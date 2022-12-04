@@ -15,8 +15,6 @@
         <div class="d-flex ms-auto">
 
           <div class="navbar-menu-buttons">
-            <a class="btn btn-primary mx-2 navbar-menu-btn" href="https://satraps.io/">Home</a>
-            <a class="btn btn-primary mx-2 navbar-menu-btn" href="https://names.satraps.io">Names</a>
 
             <div v-if="isActivated" class="btn-group mx-2 navbar-menu-btn">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +37,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <router-link tag="li" class="dropdown-item" to="/profile">Profile</router-link>
-                <router-link tag="li" class="dropdown-item" to="/">Buy domain</router-link>
+                <router-link tag="li" class="dropdown-item" to="/mint-domains">Buy domain</router-link>
                 <router-link tag="li" class="dropdown-item" to="/search-domain">Search domain</router-link>
                 <router-link tag="li" class="dropdown-item" to="/send-tokens">Send tokens</router-link>
                 <!-- <router-link tag="li" class="dropdown-item" to="/about">About</router-link>

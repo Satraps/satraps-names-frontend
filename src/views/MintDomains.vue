@@ -6,7 +6,7 @@
 import BuyDomain from "../components/BuyDomain.vue";
 
 export default {
-  name: "Home",
+  name: "MintDomains",
   
   components: {
     BuyDomain

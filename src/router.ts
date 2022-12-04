@@ -7,7 +7,11 @@ import BrowserExtension from './views/BrowserExtension.vue'
 import DomainDetails from './views/DomainDetails.vue'
 import Home from './views/Home.vue'
 import HowItWorks from './views/HowItWorks.vue'
+import MintDomains from './views/MintDomains.vue'
 import Profile from './views/Profile.vue'
+import ProfileBuyDomain from './views/ProfileBuyDomain.vue'
+import ProfileSearchDomain from './views/ProfileSearchDomain.vue'
+import ProfileSendTokens from './views/ProfileSendTokens.vue'
 import SearchDomains from './views/SearchDomains.vue'
 import SendTokens from './views/SendTokens.vue'
 import TransferDomain from './views/TransferDomain.vue'
@@ -52,9 +56,29 @@ const routes: Array<RouteRecordRaw> = [
     component: HowItWorks,
   },
   {
+    path: '/mint-domains',
+    name: 'MintDomains',
+    component: MintDomains,
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: Profile,
+  },
+  {
+    path: '/profile/buy-domain',
+    name: 'ProfileBuyDomain',
+    component: ProfileBuyDomain,
+  },
+  {
+    path: '/profile/search-domain',
+    name: 'ProfileSearchDomain',
+    component: ProfileSearchDomain,
+  },
+  {
+    path: '/profile/send-tokens',
+    name: 'ProfileSendTokens',
+    component: ProfileSendTokens,
   },
   {
     path: '/search-domain',
