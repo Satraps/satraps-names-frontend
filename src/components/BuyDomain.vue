@@ -1,9 +1,9 @@
 <template>
   <div class="container text-center">
-    <img class="img-fluid main-img rounded" src="../assets/logo.png" />
+    <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
 
-    <div class="text-align-header mt-3">
-      <h1>Mint your {{getTldName}} web3 username!</h1>
+    <div class="text-align-header mt-5">
+      <h1>Get your {{getTldName}} name!</h1>
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
@@ -334,6 +334,7 @@ export default {
 
 .main-img {
   width: 8em;
+  border: #ffffff solid 3px;
 }
 
 th:first-of-type {

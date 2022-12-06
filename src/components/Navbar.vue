@@ -2,8 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">
-        <img src="../assets/logo.png" alt="" width="30" class="d-inline-block navbar-img">
-        Satraps Names
+        <img src="../assets/satraps-logo.png" alt="" class="d-inline-block navbar-img img-fluid">
       </router-link>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +24,7 @@
                   <span 
                     class="dropdown-item" 
                     v-for="network in getSupportedNetworkNames"
+                    :key="network" 
                     @click="changeNetwork(network)"
                   >Switch to {{network}}</span>
                 </li>
@@ -130,7 +130,7 @@ export default {
   
 }
 .navbar-img {
-  margin-right: 5px;
+  height: 30px;
 }
 
 @media only screen and (max-width: 767px) {
