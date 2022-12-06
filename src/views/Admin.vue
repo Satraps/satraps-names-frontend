@@ -205,6 +205,36 @@
       </div>
       <!-- END Minter: changePrice - 5char -->
 
+      <!-- TLD: change metadata address -->
+      <div v-if="isUserTldAdmin">
+        <h3>TLD contract: change metadata address</h3>
+
+        <p>Change the Metadata contract address in the TLD contract.</p>
+
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+            <input 
+              v-model="newMetadataAddress"
+              class="form-control text-center border-2 border-light"
+              placeholder="Enter the new metadata address"
+            >
+          </div>
+        </div>
+
+        <button 
+          v-if="isActivated" 
+          class="btn btn-primary btn-lg mt-3" 
+          @click="changeMetadataAddress" 
+          :disabled="waitingCma"
+        >
+          <span v-if="waitingCma" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+          <span>Change metadata address</span>
+        </button>
+
+        <hr />
+      </div>
+      <!-- END TLD: change metadata address -->
+
       <!-- Minter: transferOwnership -->
       <div v-if="isUserMinterAdmin">
         <h3>Minter contract: transfer ownership</h3>
@@ -264,7 +294,6 @@
         <hr />
       </div>
       <!-- END TLD: transferOwnership -->
-
 
       <!-- Minter: ownerFreeMint -->
       <div v-if="isUserMinterAdmin">
@@ -333,6 +362,7 @@ export default {
     return {
       newDomain: null,
       newDomainOwner: null,
+      newMetadataAddress: null,
       newMinterOwner: null,
       newTldOwner: null,
       newPrice1: null,
@@ -348,6 +378,7 @@ export default {
       waitingPrice3: false, // waiting for TX to complete
       waitingPrice4: false, // waiting for TX to complete
       waitingPrice5: false, // waiting for TX to complete
+      waitingCma: false, // waiting for TX to complete
       waitingRf: false, // waiting for TX to complete
       waitingTmo: false, // waiting for TX to complete
       waitingTdo: false, // waiting for TX to complete
@@ -363,6 +394,57 @@ export default {
 
   methods: {
     ...mapActions("tld", ["fetchMinterContractData"]),
+
+    async changeMetadataAddress() {
+      this.waitingCma = true;
+
+      // minter contract (with signer)
+      const tldIntfc = new ethers.utils.Interface(this.getTldAbi);
+      const tldContractSigner = new ethers.Contract(this.getTldAddress, tldIntfc, this.signer);
+
+      try {
+        const tx = await tldContractSigner.changeMetadataAddress(this.newMetadataAddress);
+
+        const toastWait = this.toast(
+          {
+            component: WaitingToast,
+            props: {
+              text: "Please wait for your transaction to confirm. Click on this notification to see transaction in the block explorer."
+            }
+          },
+          {
+            type: TYPE.INFO,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          }
+        );
+
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          this.toast.dismiss(toastWait);
+          this.toast("You have changed the metadata address!", {
+            type: TYPE.SUCCESS,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          this.waitingCma = false;
+        } else {
+          this.toast.dismiss(toastWait);
+          this.toast("Transaction has failed.", {
+            type: TYPE.ERROR,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          console.log(receipt);
+          this.waitingCma = false;
+        }
+
+      } catch (e) {
+        console.log(e)
+        this.waitingCma = false;
+        this.toast(e.message, {type: TYPE.ERROR});
+      }
+
+      this.waitingCma = false;
+    },
 
     async changePrice(chars) {
       let newPrice;
