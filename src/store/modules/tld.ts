@@ -11,18 +11,18 @@ export default {
   state: () => ({ 
     discountPercentage: 0,
     tldName: ".satrap", // TODO
-    tldAddress: "", // TODO
+    tldAddress: "0xeFBE0b46649B7A0F1e1D49CCa98aD9CF6bcFB096", // TODO
     tldContract: null,
     tldChainId: 19, // TODO
     tldChainName: "Songbird", // TODO
-    minterAddress: "", // TODO
+    minterAddress: "0xf8AFa14A896D4b94eD80970589aB9d989331B28b", // TODO
     minterContract: null,
     minterPaused: true,
-    minterTldPrice1: 9999,
-    minterTldPrice2: 6999,
-    minterTldPrice3: 3999,
-    minterTldPrice4: 1999,
-    minterTldPrice5: 999,
+    minterTldPrice1: 5999,
+    minterTldPrice2: 3499,
+    minterTldPrice3: 2499,
+    minterTldPrice4: 1499,
+    minterTldPrice5: 799,
     referralFee: 1000
   }),
 
