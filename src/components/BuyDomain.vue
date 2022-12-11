@@ -31,7 +31,7 @@
 
     <div class="text-align-header">
       <p class="mt-5 price-text">
-          Domain price: {{getPrice}} {{getPaymentTokenName}}
+          Domain price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
       </p>
     </div>
 
@@ -88,23 +88,23 @@
           <tbody>
             <tr>
               <td>1 character</td>
-              <td>{{getMinterTldPrice1}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice1)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>2 characters</td>
-              <td>{{getMinterTldPrice2}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice2)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>3 characters</td>
-              <td>{{getMinterTldPrice3}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice3)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>4 characters</td>
-              <td>{{getMinterTldPrice4}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice4)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>5+ characters</td>
-              <td>{{getMinterTldPrice5}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice5)}} {{getPaymentTokenName}}</td>
             </tr>
           </tbody>
         </table>
