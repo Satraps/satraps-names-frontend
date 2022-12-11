@@ -12,8 +12,8 @@
           <div class="col-md-6 offset-md-3">
             <input 
               class="form-control text-center clipboard"
-              :value="'https://names.satraps.io/?ref=' + this.getNameOrAddress"
-              @click="copyToClipboard('https://names.satraps.io/?ref=' + this.getNameOrAddress)"
+              :value="'https://id.satraps.io/?ref=' + this.getNameOrAddress"
+              @click="copyToClipboard('https://id.satraps.io/?ref=' + this.getNameOrAddress)"
               readonly
             >
           </div>
