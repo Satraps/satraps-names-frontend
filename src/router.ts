@@ -10,6 +10,7 @@ import HowItWorks from './views/HowItWorks.vue'
 import MintDomains from './views/MintDomains.vue'
 import Profile from './views/Profile.vue'
 import ProfileBuyDomain from './views/ProfileBuyDomain.vue'
+import ProfileDelegateFtso from './views/ProfileDelegateFtso.vue'
 import ProfileSearchDomain from './views/ProfileSearchDomain.vue'
 import ProfileSendTokens from './views/ProfileSendTokens.vue'
 import SearchDomains from './views/SearchDomains.vue'
@@ -69,6 +70,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile/buy-domain',
     name: 'ProfileBuyDomain',
     component: ProfileBuyDomain,
+  },
+  {
+    path: '/profile/delegate-ftso',
+    name: 'ProfileDelegateFtso',
+    component: ProfileDelegateFtso,
   },
   {
     path: '/profile/search-domain',

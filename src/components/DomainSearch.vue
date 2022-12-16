@@ -33,15 +33,10 @@ import { mapGetters } from 'vuex';
 
 import tldsJson from '../abi/tlds.json';
 import tldAbi from '../abi/PunkTLD.json';
-import Sidebar from '../components/Sidebar.vue';
 import useChainHelpers from "../hooks/useChainHelpers";
 
 export default {
   name: "DomainSearch",
-
-  components: {
-    Sidebar
-  },
 
   data() {
     return {

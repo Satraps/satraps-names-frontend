@@ -18,6 +18,11 @@ p {
   font-size: 18px;
 }
 
+small {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
 div {
   font-size: 18px;
 }

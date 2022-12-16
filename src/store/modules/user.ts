@@ -189,6 +189,10 @@ export default {
 
     setUserAllDomainNames(state, domains) {
       state.userAllDomainNames = domains;
+    },
+
+    subtractUserBalance(state, amount) {
+      state.userBalance -= amount;
     }
   },
 

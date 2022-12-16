@@ -33,6 +33,10 @@
       <i class="bi bi-cart4"></i> Buy domain
     </router-link>
 
+    <router-link class="btn btn-sidebar text-start" to="/profile/delegate-ftso">
+      <i class="bi bi-arrow-bar-right"></i> Delegate your SGB
+    </router-link>
+
     <router-link class="btn btn-sidebar text-start" to="/profile/search-domain">
       <i class="bi bi-search"></i> Search domain
     </router-link>
