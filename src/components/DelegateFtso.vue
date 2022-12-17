@@ -7,7 +7,7 @@
 
     <!-- Wrap your SGB -->
     <div class="row mt-5">
-      <h4>Step 1: Wrap your SGB to WSGB</h4>
+      <h4>Wrap your SGB to WSGB</h4>
 
       <div class="col-md-6 offset-md-3">
         <input 
@@ -33,7 +33,7 @@
 
     <!-- Delegate your WSGB -->
     <div class="row mt-5">
-      <h4>Step 2: Delegate your WSGB to the Satraps FTSO</h4>
+      <h4>Delegate your WSGB to the Satraps FTSO</h4>
 
       <div class="col-md-6 offset-md-3">
         <input 
@@ -62,9 +62,9 @@
 
     <!-- Claim rewards -->
     <div class="row mt-5">
-      <h4>Step 3: Claim rewards</h4>
+      <h4>Claim rewards</h4>
 
-      <!-- getEpochsWithUnclaimedRewards -->
+      <p>Claimable: {{unclaimedRewards.toFixed(5)}} {{this.getPaymentTokenName}}</p>
     </div>
 
     <button
@@ -97,13 +97,20 @@ export default {
   data() {
     return {
       delegatePercentageAmount: null,
-      ftsoAddress: "0x9d3b56eFDF431E40D7a3C074dF8854F0A2BdfBfF",
+      ftsoRewardManagerAddress: "0xc5738334b972745067fFa666040fdeADc66Cb925",
+      satrapsFtsoAddress: "0x9d3b56eFDF431E40D7a3C074dF8854F0A2BdfBfF",
+      unclaimedEpochs: null, // epochs with unclaimed rewards (for the current user)
+      unclaimedRewards: 0,
       waitingClaim: false,
       waitingPerc: false,
       waitingWsgb: false,
       wrapSgbAmount: null,
       wsgbAddress: "0x02f0826ef6aD107Cfc861152B32B52fD11BaB9ED"
     }
+  },
+
+  created() {
+    this.fetchData();
   },
 
   computed: {
@@ -144,7 +151,7 @@ export default {
 
       try {
         const tx = await contract.delegate(
-          this.ftsoAddress,
+          this.satrapsFtsoAddress,
           Number(this.delegatePercentageAmount)*100 // multiply by 100 to get bips (basis points)
         );
 
@@ -187,10 +194,34 @@ export default {
     },
 
     async fetchData() {
-      // TODO 
-      // getEpochsWithUnclaimedRewards list of epoch IDs with unclaimed rewards from the FtsoRewardManager contract
-      // getStateOfRewards (for address per epoch)
-      // claimReward: address and the list of epoch IDs
+      if (this.signer) {
+        const intfc = new ethers.utils.Interface(FtsoRewardManager);
+        const contract = new ethers.Contract(this.ftsoRewardManagerAddress, intfc, this.signer);
+
+        // TODO 
+        // getEpochsWithUnclaimedRewards list of epoch IDs with unclaimed rewards from the FtsoRewardManager contract
+        this.unclaimedEpochs = await contract.getEpochsWithUnclaimedRewards(this.address);
+        console.log("unclaimedEpochs: ");
+        console.log(this.unclaimedEpochs);
+
+        // getStateOfRewards (for address per epoch)
+        if (this.unclaimedEpochs) {
+          this.unclaimedRewards = 0;
+          for (let epoch of this.unclaimedEpochs) {
+            console.log(epoch);
+            console.log(Number(epoch));
+            let rewardObj = await contract.getStateOfRewards(this.address, epoch);
+            console.log(rewardObj);
+            console.log(Number(rewardObj._rewardAmounts));
+            this.unclaimedRewards += Number(ethers.utils.formatEther(String(Number(rewardObj._rewardAmounts))));
+          }
+        }
+
+        console.log("this.unclaimedRewards:");
+        console.log(this.unclaimedRewards);
+        
+        // claimReward: address and the list of epoch IDs
+      }
     },
 
     async wrapSgb() {
@@ -250,6 +281,14 @@ export default {
     const { getFallbackProvider } = useChainHelpers();
     
     return { address, getFallbackProvider, signer, toast }
+  },
+
+  watch: {
+    address(newVal, oldVal) {
+      if (newVal) {
+        this.fetchData();
+      }
+    },
   },
 }
 </script>

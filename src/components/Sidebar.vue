@@ -34,7 +34,7 @@
     </router-link>
 
     <router-link class="btn btn-sidebar text-start" to="/profile/delegate-ftso">
-      <i class="bi bi-arrow-bar-right"></i> Delegate your SGB
+      <i class="bi bi-arrow-bar-right"></i> Delegate to FTSO
     </router-link>
 
     <router-link class="btn btn-sidebar text-start" to="/profile/search-domain">
