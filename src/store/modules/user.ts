@@ -120,6 +120,10 @@ export default {
       
     },
 
+    addUserBalance(state, amount) {
+      state.userBalance += amount;
+    },
+
     setUserData(state) {
       state.userAddress = address.value;
       state.userShortAddress = shortenAddress(address.value);

@@ -68,15 +68,18 @@
 
       <p>Claimable: {{unclaimedRewards.toFixed(5)}} {{this.getPaymentTokenName}}</p>
     </div>
-
+    
     <button
-      class="btn btn-primary mt-3 mb-5"
+      class="btn btn-primary mt-3"
       @click="claimRewards"
-      :disabled="waitingClaim"
+      :disabled="waitingClaim || isFtsoManagerBalanceTooLow || unclaimedRewards == 0"
     >
       <span v-if="waitingClaim" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       Claim rewards
     </button>
+    <p>
+      <small v-if="isFtsoManagerBalanceTooLow">The FTSO Manager contract balance is too low.</small>
+    </p>
     <!-- END: Claim rewards -->
   </div>
 
@@ -100,6 +103,7 @@ export default {
     return {
       delegatePercentageAmount: null,
       ftsoRewardManagerAddress: "0xc5738334b972745067fFa666040fdeADc66Cb925",
+      ftsoRewardManagerBalance: 0,
       satrapsFtsoAddress: "0x9d3b56eFDF431E40D7a3C074dF8854F0A2BdfBfF",
       unclaimedEpochs: null, // epochs with unclaimed rewards (for the current user)
       unclaimedRewards: 0,
@@ -119,6 +123,15 @@ export default {
     ...mapGetters("tld", ["getTldName"]),
     ...mapGetters("user", ["getUserAddress", "getPaymentTokenName", "getUserBalance"]),
 
+    isFtsoManagerBalanceTooLow() {
+      // return true if there's not enough SGB in the official FTSO Reward Manager contract
+      if (this.unclaimedRewards > this.ftsoRewardManagerBalance) {
+        return true;
+      }
+
+      return false;
+    },
+
     percentageNotValid() {
       if (this.delegatePercentageAmount < 0 || this.delegatePercentageAmount > 100) {
         return true;
@@ -129,7 +142,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations("user", ["subtractUserBalance"]),
+    ...mapMutations("user", ["addUserBalance", "subtractUserBalance"]),
 
     enterMaxSgb() {
       if (Number(this.getUserBalance) > 1) {
@@ -167,6 +180,7 @@ export default {
             type: TYPE.SUCCESS,
             onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
           });
+          this.addUserBalance(Number(this.unclaimedRewards));
           this.fetchData();
           this.waitingClaim = false;
         } else {
@@ -255,10 +269,15 @@ export default {
         if (this.unclaimedEpochs) {
           this.unclaimedRewards = 0;
           for (let epoch of this.unclaimedEpochs) {
-            let rewardObj = await contract.getStateOfRewards(this.address, epoch);
-            this.unclaimedRewards += Number(ethers.utils.formatEther(String(Number(rewardObj._rewardAmounts))));
+            let rewardObj = await contract.getStateOfRewards(this.address, epoch); // reward object with many data
+            let formatReward = ethers.utils.formatEther(rewardObj._rewardAmounts[0]); // extract the reward amount in wei and convert it to base unit
+            this.unclaimedRewards += Number(formatReward); // add formatted reward the total unclaimed reward amount
           }
         }
+
+        // check the SGb balance in the official FTSO Reward Manager contract
+        const ftsoRewardManagerBalanceWei = await this.signer.provider.getBalance(this.ftsoRewardManagerAddress);
+        this.ftsoRewardManagerBalance = ethers.utils.formatEther(ftsoRewardManagerBalanceWei);
       }
     },
 
