@@ -69,10 +69,10 @@
 
     <button
       class="btn btn-primary mt-3 mb-5"
-      @click="delegatePercentage"
-      :disabled="waitingPerc || percentageNotValid"
+      @click="claimRewards"
+      :disabled="waitingClaim"
     >
-      <span v-if="waitingPerc" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span v-if="waitingClaim" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       Claim rewards
     </button>
     <!-- END: Claim rewards -->
@@ -98,6 +98,7 @@ export default {
     return {
       delegatePercentageAmount: null,
       ftsoAddress: "0x9d3b56eFDF431E40D7a3C074dF8854F0A2BdfBfF",
+      waitingClaim: false,
       waitingPerc: false,
       waitingWsgb: false,
       wrapSgbAmount: null,
