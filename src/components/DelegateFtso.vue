@@ -3,6 +3,8 @@
   <div class="container text-center">
     <h3>Delegate to the Satraps FTSO</h3>
 
+    <p class="mt-3">Consider delegating your WSGB to the Satraps FTSO.</p>
+
     <hr class="mt-5">
 
     <!-- Wrap your SGB -->
@@ -135,6 +137,54 @@ export default {
       }
     },
 
+    async claimRewards() {
+      this.waitingClaim = true;
+
+      const intfc = new ethers.utils.Interface(FtsoRewardManager);
+      const contract = new ethers.Contract(this.ftsoRewardManagerAddress, intfc, this.signer);
+
+      try {
+        const tx = await contract.claimReward(this.address, this.unclaimedEpochs);
+
+        const toastWait = this.toast(
+          {
+            component: WaitingToast,
+            props: {
+              text: "Please wait for your transaction to confirm. Click on this notification to see transaction in the block explorer."
+            }
+          },
+          {
+            type: TYPE.INFO,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          }
+        );
+
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          this.toast.dismiss(toastWait);
+          this.toast("You have successfully claimed your rewards!", {
+            type: TYPE.SUCCESS,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          this.fetchData();
+          this.waitingClaim = false;
+        } else {
+          this.toast.dismiss(toastWait);
+          this.toast("Transaction has failed.", {
+            type: TYPE.ERROR,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          console.log(receipt);
+          this.waitingClaim = false;
+        }
+      } catch (e) {
+        this.waitingClaim = false;
+        console.log(e);
+        this.toast("The transaction cannot go through. The reason may be that the reward pool is empty, so wait for a refill.", {type: TYPE.ERROR});
+      }
+    },
+
     async delegatePercentage() {
       this.waitingPerc = true;
 
@@ -198,29 +248,17 @@ export default {
         const intfc = new ethers.utils.Interface(FtsoRewardManager);
         const contract = new ethers.Contract(this.ftsoRewardManagerAddress, intfc, this.signer);
 
-        // TODO 
-        // getEpochsWithUnclaimedRewards list of epoch IDs with unclaimed rewards from the FtsoRewardManager contract
+        // list of epoch IDs with unclaimed rewards from the FtsoRewardManager contract
         this.unclaimedEpochs = await contract.getEpochsWithUnclaimedRewards(this.address);
-        console.log("unclaimedEpochs: ");
-        console.log(this.unclaimedEpochs);
 
-        // getStateOfRewards (for address per epoch)
+        // calculate the total reward amount
         if (this.unclaimedEpochs) {
           this.unclaimedRewards = 0;
           for (let epoch of this.unclaimedEpochs) {
-            console.log(epoch);
-            console.log(Number(epoch));
             let rewardObj = await contract.getStateOfRewards(this.address, epoch);
-            console.log(rewardObj);
-            console.log(Number(rewardObj._rewardAmounts));
             this.unclaimedRewards += Number(ethers.utils.formatEther(String(Number(rewardObj._rewardAmounts))));
           }
         }
-
-        console.log("this.unclaimedRewards:");
-        console.log(this.unclaimedRewards);
-        
-        // claimReward: address and the list of epoch IDs
       }
     },
 
