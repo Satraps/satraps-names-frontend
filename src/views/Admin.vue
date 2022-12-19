@@ -55,6 +55,40 @@
       </div>
       <!-- END Minter: changeDiscountBps -->
 
+      <!-- Minter: addPartnerNftAddress -->
+      <div v-if="isUserMinterAdmin">
+        <h3>Minter contract: add partner NFT collection</h3>
+
+        <p>Anyone who holds an NFT from the partner collection will be able to mint a domain and also receive a discount.</p>
+
+        <p>
+          Current partner NFT addresses: {{currentNftPartners}}
+        </p>
+
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+            <input 
+              v-model="newPartnerAddress"
+              class="form-control text-center border-2 border-light"
+              placeholder="Enter a new partner address"
+            >
+          </div>
+        </div>
+
+        <button 
+          v-if="isActivated" 
+          class="btn btn-primary btn-lg mt-3" 
+          @click="addPartnerNftAddress" 
+          :disabled="waitingApa"
+        >
+          <span v-if="waitingApa" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+          <span>Add new partner</span>
+        </button>
+
+        <hr />
+      </div>
+      <!-- END Minter: addPartnerNftAddress -->
+
       <!-- Minter: changeReferralFee -->
       <div v-if="isUserMinterAdmin">
         <h3>Change referral fee</h3>
@@ -390,11 +424,13 @@ export default {
 
   data() {
     return {
+      currentNftPartners: [],
       newDiscountBps: null,
       newDomain: null,
       newDomainOwner: null,
       newMetadataAddress: null,
       newMinterOwner: null,
+      newPartnerAddress: null,
       newTldOwner: null,
       newPrice1: null,
       newPrice2: null,
@@ -402,6 +438,7 @@ export default {
       newPrice4: null,
       newPrice5: null,
       newReferralFee: null,
+      waitingApa: false, // waiting for TX to complete
       waitingDbps: false, // waiting for TX to complete
       waitingMfd: false, // waiting for TX to complete
       waitingPaused: false, // waiting for TX to complete
@@ -417,6 +454,10 @@ export default {
     }
   },
 
+  created() {
+    this.fetchData();
+  },
+
   computed: {
     ...mapGetters("punk", ["getTldAbi"]),
     ...mapGetters("network", ["getBlockExplorerBaseUrl"]),
@@ -426,6 +467,57 @@ export default {
 
   methods: {
     ...mapActions("tld", ["fetchMinterContractData"]),
+
+    async addPartnerNftAddress() {
+      this.waitingApa = true;
+
+      // minter contract (with signer)
+      const minterIntfc = new ethers.utils.Interface(MinterAbi);
+      const minterContractSigner = new ethers.Contract(this.getMinterAddress, minterIntfc, this.signer);
+
+      try {
+        const tx = await minterContractSigner.addPartnerNftAddress(this.newPartnerAddress);
+
+        const toastWait = this.toast(
+          {
+            component: WaitingToast,
+            props: {
+              text: "Please wait for your transaction to confirm. Click on this notification to see transaction in the block explorer."
+            }
+          },
+          {
+            type: TYPE.INFO,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          }
+        );
+
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          this.toast.dismiss(toastWait);
+          this.toast("You have added a new partner!", {
+            type: TYPE.SUCCESS,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          this.waitingApa = false;
+        } else {
+          this.toast.dismiss(toastWait);
+          this.toast("Transaction has failed.", {
+            type: TYPE.ERROR,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          console.log(receipt);
+          this.waitingApa = false;
+        }
+
+      } catch (e) {
+        console.log(e)
+        this.waitingApa = false;
+        this.toast(e.message, {type: TYPE.ERROR});
+      }
+
+      this.waitingApa = false;
+    },
 
     async changeDiscountBps() {
       this.waitingDbps = true;
@@ -720,6 +812,15 @@ export default {
       }
 
       this.waitingRf = false;
+    },
+
+    async fetchData() {
+      // minter contract (with signer)
+      const minterIntfc = new ethers.utils.Interface(MinterAbi);
+      const minterContractSigner = new ethers.Contract(this.getMinterAddress, minterIntfc, this.signer);
+
+      // get partner NFT addresses
+      this.currentNftPartners = await minterContractSigner.getPartnerNftsArray();
     },
 
     async mintFreeDomain() {
