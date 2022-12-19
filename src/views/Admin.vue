@@ -25,6 +25,36 @@
       </div>
       <!-- END Minter: togglePaused -->
 
+      <!-- Minter: changeDiscountBps -->
+      <div v-if="isUserMinterAdmin">
+        <h3>Change Discount Bips (basis points)</h3>
+
+        <p>Important: Discount is defined in basis points (bps). Current: {{getMinterDiscountPercentage*100}} bps ({{getMinterDiscountPercentage}}%).</p>
+
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+            <input 
+              v-model="newDiscountBps"
+              class="form-control text-center border-2 border-light"
+              placeholder="Enter a new discount in bps"
+            >
+          </div>
+        </div>
+
+        <button 
+          v-if="isActivated" 
+          class="btn btn-primary btn-lg mt-3" 
+          @click="changeDiscountBps" 
+          :disabled="waitingDbps"
+        >
+          <span v-if="waitingDbps" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+          <span>Change discount</span>
+        </button>
+
+        <hr />
+      </div>
+      <!-- END Minter: changeDiscountBps -->
+
       <!-- Minter: changeReferralFee -->
       <div v-if="isUserMinterAdmin">
         <h3>Change referral fee</h3>
@@ -360,6 +390,7 @@ export default {
 
   data() {
     return {
+      newDiscountBps: null,
       newDomain: null,
       newDomainOwner: null,
       newMetadataAddress: null,
@@ -371,6 +402,7 @@ export default {
       newPrice4: null,
       newPrice5: null,
       newReferralFee: null,
+      waitingDbps: false, // waiting for TX to complete
       waitingMfd: false, // waiting for TX to complete
       waitingPaused: false, // waiting for TX to complete
       waitingPrice1: false, // waiting for TX to complete
@@ -389,11 +421,62 @@ export default {
     ...mapGetters("punk", ["getTldAbi"]),
     ...mapGetters("network", ["getBlockExplorerBaseUrl"]),
     ...mapGetters("user", ["isUserMinterAdmin", "isUserTldAdmin", "isUserRoyaltyFeeUpdater"]),
-    ...mapGetters("tld", ["getMinterAddress", "getReferralFee", "getTldAddress", "getMinterPaused", "getMinterTldPrice1", "getMinterTldPrice2", "getMinterTldPrice3", "getMinterTldPrice4", "getMinterTldPrice5"]),
+    ...mapGetters("tld", ["getMinterAddress", "getReferralFee", "getTldAddress", "getMinterDiscountPercentage", "getMinterPaused", "getMinterTldPrice1", "getMinterTldPrice2", "getMinterTldPrice3", "getMinterTldPrice4", "getMinterTldPrice5"]),
   },
 
   methods: {
     ...mapActions("tld", ["fetchMinterContractData"]),
+
+    async changeDiscountBps() {
+      this.waitingDbps = true;
+
+      // minter contract (with signer)
+      const minterIntfc = new ethers.utils.Interface(MinterAbi);
+      const minterContractSigner = new ethers.Contract(this.getMinterAddress, minterIntfc, this.signer);
+
+      try {
+        const tx = await minterContractSigner.changeDiscountBps(Number(this.newDiscountBps));
+
+        const toastWait = this.toast(
+          {
+            component: WaitingToast,
+            props: {
+              text: "Please wait for your transaction to confirm. Click on this notification to see transaction in the block explorer."
+            }
+          },
+          {
+            type: TYPE.INFO,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          }
+        );
+
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          this.toast.dismiss(toastWait);
+          this.toast("You have changed the discount!", {
+            type: TYPE.SUCCESS,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          this.waitingDbps = false;
+        } else {
+          this.toast.dismiss(toastWait);
+          this.toast("Transaction has failed.", {
+            type: TYPE.ERROR,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          console.log(receipt);
+          this.waitingDbps = false;
+        }
+
+      } catch (e) {
+        console.log(e)
+        this.waitingDbps = false;
+        this.toast(e.message, {type: TYPE.ERROR});
+      }
+
+      this.waitingDbps = false;
+    },
 
     async changeMetadataAddress() {
       this.waitingCma = true;
