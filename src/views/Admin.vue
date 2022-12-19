@@ -336,6 +336,36 @@
       </div>
       <!-- END TLD: change metadata address -->
 
+      <!-- TLD: change minter address -->
+      <div v-if="isUserTldAdmin">
+        <h3>TLD contract: change minter address</h3>
+
+        <p>Change the Minter contract address in the TLD contract.</p>
+
+        <div class="row mt-5">
+          <div class="col-md-6 offset-md-3">
+            <input 
+              v-model="newMinterAddress"
+              class="form-control text-center border-2 border-light"
+              placeholder="Enter the new minter address"
+            >
+          </div>
+        </div>
+
+        <button 
+          v-if="isActivated" 
+          class="btn btn-primary btn-lg mt-3" 
+          @click="changeMinterAddress" 
+          :disabled="waitingCmia"
+        >
+          <span v-if="waitingCmia" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+          <span>Change minter address</span>
+        </button>
+
+        <hr />
+      </div>
+      <!-- END TLD: change minter address -->
+
       <!-- Minter: transferOwnership -->
       <div v-if="isUserMinterAdmin">
         <h3>Minter contract: transfer ownership</h3>
@@ -466,6 +496,7 @@ export default {
       newDomain: null,
       newDomainOwner: null,
       newMetadataAddress: null,
+      newMinterAddress: null,
       newMinterOwner: null,
       newPartnerAddress: null,
       newTldOwner: null,
@@ -478,6 +509,7 @@ export default {
       removePartnerIndex: null,
       waitingApa: false, // waiting for TX to complete
       waitingCma: false, // waiting for TX to complete
+      waitingCmia: false, // waiting for TX to complete
       waitingDbps: false, // waiting for TX to complete
       waitingMfd: false, // waiting for TX to complete
       waitingPaused: false, // waiting for TX to complete
@@ -659,6 +691,57 @@ export default {
       }
 
       this.waitingCma = false;
+    },
+
+    async changeMinterAddress() {
+      this.waitingCmia = true;
+
+      // minter contract (with signer)
+      const tldIntfc = new ethers.utils.Interface(this.getTldAbi);
+      const tldContractSigner = new ethers.Contract(this.getTldAddress, tldIntfc, this.signer);
+
+      try {
+        const tx = await tldContractSigner.changeMinter(this.newMinterAddress);
+
+        const toastWait = this.toast(
+          {
+            component: WaitingToast,
+            props: {
+              text: "Please wait for your transaction to confirm. Click on this notification to see transaction in the block explorer."
+            }
+          },
+          {
+            type: TYPE.INFO,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          }
+        );
+
+        const receipt = await tx.wait();
+
+        if (receipt.status === 1) {
+          this.toast.dismiss(toastWait);
+          this.toast("You have changed the minter address!", {
+            type: TYPE.SUCCESS,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          this.waitingCmia = false;
+        } else {
+          this.toast.dismiss(toastWait);
+          this.toast("Transaction has failed.", {
+            type: TYPE.ERROR,
+            onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
+          });
+          console.log(receipt);
+          this.waitingCmia = false;
+        }
+
+      } catch (e) {
+        console.log(e)
+        this.waitingCmia = false;
+        this.toast(e.message, {type: TYPE.ERROR});
+      }
+
+      this.waitingCmia = false;
     },
 
     async changePrice(chars) {
