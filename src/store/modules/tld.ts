@@ -9,20 +9,20 @@ export default {
   namespaced: true,
   
   state: () => ({ 
-    discountPercentage: 0,
+    discountPercentage: 60,
     tldName: ".satrap", // TODO
     tldAddress: "0xeFBE0b46649B7A0F1e1D49CCa98aD9CF6bcFB096", // TODO
     tldContract: null,
     tldChainId: 19, // TODO
     tldChainName: "Songbird", // TODO
-    minterAddress: "0xf8AFa14A896D4b94eD80970589aB9d989331B28b", // TODO
+    minterAddress: "0x7b3E2Ec40c241b424b08fD31937D22137793a00c", // TODO
     minterContract: null,
     minterPaused: true,
-    minterTldPrice1: 5999,
-    minterTldPrice2: 3499,
-    minterTldPrice3: 2499,
-    minterTldPrice4: 1499,
-    minterTldPrice5: 799,
+    minterTldPrice1: 50000,
+    minterTldPrice2: 20000,
+    minterTldPrice3: 8000,
+    minterTldPrice4: 2500,
+    minterTldPrice5: 1000,
     referralFee: 1000
   }),
 
@@ -86,7 +86,13 @@ export default {
       state.minterContract = contract;
     },
 
-    setDiscountPercentage(state, percentage) {
+    setDiscountPercentage(state, bps) {
+      let percentage = 0;
+
+      if (bps > 0) {
+        percentage = bps / 100;
+      }
+
       state.discountPercentage = percentage;
     },
 
@@ -146,6 +152,10 @@ export default {
       const priceWei5 = await minterContract.price5char();
       const domainPrice5 = ethers.utils.formatEther(priceWei5);
       commit("setMinterTldPrice5", domainPrice5);
+
+      // fetch referral fee
+      const discountBps = await minterContract.discountBps();
+      commit("setDiscountPercentage", discountBps);
 
       // fetch referral fee
       const refFee = await minterContract.referralFee();

@@ -88,23 +88,23 @@
           <tbody>
             <tr>
               <td>1 character</td>
-              <td>{{Math.floor(getMinterTldPrice1)}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice1 * this.getDiscountFactor)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>2 characters</td>
-              <td>{{Math.floor(getMinterTldPrice2)}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice2 * this.getDiscountFactor)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>3 characters</td>
-              <td>{{Math.floor(getMinterTldPrice3)}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice3 * this.getDiscountFactor)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>4 characters</td>
-              <td>{{Math.floor(getMinterTldPrice4)}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice4 * this.getDiscountFactor)}} {{getPaymentTokenName}}</td>
             </tr>
             <tr>
               <td>5+ characters</td>
-              <td>{{Math.floor(getMinterTldPrice5)}} {{getPaymentTokenName}}</td>
+              <td>{{Math.floor(getMinterTldPrice5 * this.getDiscountFactor)}} {{getPaymentTokenName}}</td>
             </tr>
           </tbody>
         </table>
@@ -150,20 +150,30 @@ export default {
     ...mapGetters("network", ["getBlockExplorerBaseUrl"]),
     ...mapGetters("tld", ["getTldChainId", "getTldChainName", "getMinterAddress", "getTldContract", "getMinterTldPrice1", "getMinterTldPrice2", "getMinterTldPrice3", "getMinterTldPrice4", "getMinterTldPrice5", "getMinterPaused", "getMinterDiscountPercentage", "getTldName"]),
 
+    getDiscountFactor() {
+      let factor = 1;
+
+      if (this.getDiscountEligible && this.getMinterDiscountPercentage > 0) {
+        factor -= (this.getMinterDiscountPercentage/100);
+      }
+
+      return factor;
+    },
+
     getPrice() {
       if (this.chosenDomainName) {
         if (this.chosenDomainName.match(/./gu).length === 1) {
-          return this.getMinterTldPrice1;
+          return this.getMinterTldPrice1 * this.getDiscountFactor;
         } else if (this.chosenDomainName.match(/./gu).length === 2) {
-          return this.getMinterTldPrice2;
+          return this.getMinterTldPrice2 * this.getDiscountFactor;
         } else if (this.chosenDomainName.match(/./gu).length === 3) {
-          return this.getMinterTldPrice3;
+          return this.getMinterTldPrice3 * this.getDiscountFactor;
         } else if (this.chosenDomainName.match(/./gu).length === 4) {
-          return this.getMinterTldPrice4;
+          return this.getMinterTldPrice4 * this.getDiscountFactor;
         }
       }
       
-      return this.getMinterTldPrice5;
+      return this.getMinterTldPrice5 * this.getDiscountFactor;
     },
 
     domainLowerCase() {

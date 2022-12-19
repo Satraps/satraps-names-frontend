@@ -301,9 +301,11 @@ export default {
         const minterContract = new ethers.Contract(rootGetters["tld/getMinterAddress"], minterIntfc, signer.value);
 
         const canMint = await minterContract.canUserMint(address.value);
-
         commit("setCanUserBuy", canMint);
         //commit("setCanUserBuy", true); // minting now open to everyone
+
+        const canGetDiscount = await minterContract.canGetDiscount(address.value);
+        commit("setCanGetDiscount", canGetDiscount);
       }
     },
 
