@@ -14,6 +14,12 @@
         <div class="d-flex ms-auto">
 
           <div class="navbar-menu-buttons">
+            
+            <router-link 
+              v-if="getFreeMintEligible" 
+              class="btn btn-primary mx-2 navbar-menu-btn" 
+              to="/claim-free-domain"
+            >Claim Free Mint</router-link>
 
             <div v-if="isActivated" class="btn-group mx-2 navbar-menu-btn">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,7 +71,7 @@ export default {
   name: "Navbar",
 
   computed: {
-    ...mapGetters("user", ["getUserShortAddress", "getUserSelectedName"]),
+    ...mapGetters("user", ["getUserShortAddress", "getUserSelectedName", "getFreeMintEligible"]),
     ...mapGetters("network", ["getNetworkName", "getSupportedNetworks", "getSupportedNetworkNames"]),
 
     getNameOrAddress() {

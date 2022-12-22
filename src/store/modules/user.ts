@@ -11,6 +11,7 @@ export default {
   state: () => ({ 
     canUserBuy: false, // only NFT holders are eligible
     discountEligible: false,
+    freeMintEligible: false,
     isTldAdmin: false,
     isMinterAdmin: false,
     isRoyaltyFeeUpdater: false,
@@ -39,6 +40,9 @@ export default {
     },
     getDiscountEligible(state) {
       return state.discountEligible;
+    },
+    getFreeMintEligible(state) {
+      return state.freeMintEligible;
     },
     getUserAddress(state) {
       return state.userAddress;
@@ -143,6 +147,10 @@ export default {
       if (!state.userAllDomainNames.includes(defName)) {
         state.userAllDomainNames.push(defName);
       }
+    },
+
+    setFreeMintEligible(state, eligible) {
+      state.freeMintEligible = eligible;
     },
 
     setIsRoyaltyFeeUpdater(state, admin) {
@@ -306,6 +314,9 @@ export default {
 
         const canGetDiscount = await minterContract.canGetDiscount(address.value);
         commit("setCanGetDiscount", canGetDiscount);
+
+        const canClaimFreeMint = await minterContract.canClaimFreeDomain(address.value);
+        commit("setFreeMintEligible", canClaimFreeMint);
       }
     },
 

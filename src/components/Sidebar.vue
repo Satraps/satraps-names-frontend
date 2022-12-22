@@ -29,6 +29,10 @@
       <i class="bi bi-person"></i> Profile
     </router-link>
 
+    <router-link v-if="getFreeMintEligible" class="btn btn-sidebar text-start" to="/profile/claim-free-domain">
+      <i class="bi bi-heart"></i> Claim free domain
+    </router-link>
+
     <router-link class="btn btn-sidebar text-start" to="/profile/buy-domain">
       <i class="bi bi-cart4"></i> Buy domain
     </router-link>
@@ -79,7 +83,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters("user", ["getUserSelectedName", "getPaymentTokenName", "getUserShortAddress", "getUserSelectedNameImageSvg"]),
+    ...mapGetters("user", ["getFreeMintEligible", "getUserSelectedName", "getPaymentTokenName", "getUserShortAddress", "getUserSelectedNameImageSvg"]),
 
     getNameOrAddress() {
       if (this.getUserSelectedName) {

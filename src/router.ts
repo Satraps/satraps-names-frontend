@@ -4,12 +4,14 @@ import Admin from './views/Admin.vue'
 import About from './views/About.vue'
 import Allowance from './views/Allowance.vue'
 import BrowserExtension from './views/BrowserExtension.vue'
+import ClaimFreeDomain from './views/ClaimFreeDomain.vue'
 import DomainDetails from './views/DomainDetails.vue'
 import Home from './views/Home.vue'
 import HowItWorks from './views/HowItWorks.vue'
 import MintDomains from './views/MintDomains.vue'
 import Profile from './views/Profile.vue'
 import ProfileBuyDomain from './views/ProfileBuyDomain.vue'
+import ProfileClaimFreeDomain from './views/ProfileClaimFreeDomain.vue'
 import ProfileDelegateFtso from './views/ProfileDelegateFtso.vue'
 import ProfileSearchDomain from './views/ProfileSearchDomain.vue'
 import ProfileSendTokens from './views/ProfileSendTokens.vue'
@@ -46,6 +48,11 @@ const routes: Array<RouteRecordRaw> = [
     component: BrowserExtension,
   },
   {
+    path: '/claim-free-domain',
+    name: 'ClaimFreeDomain',
+    component: ClaimFreeDomain,
+  },
+  {
     path: '/domain/:domainChain/:tld/:domainName',
     name: 'DomainDetails',
     component: DomainDetails,
@@ -70,6 +77,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile/buy-domain',
     name: 'ProfileBuyDomain',
     component: ProfileBuyDomain,
+  },
+  {
+    path: '/profile/claim-free-domain',
+    name: 'ProfileClaimFreeDomain',
+    component: ProfileClaimFreeDomain,
   },
   {
     path: '/profile/delegate-ftso',
