@@ -30,7 +30,7 @@
         </div>
         <div class="modal-body">
           <p>
-            You can add custom data to this domain.
+            You can add custom data to this ID.
           </p>
 
           <p>
@@ -183,7 +183,7 @@ export default {
 
           if (receipt.status === 1) {
             this.toast.dismiss(toastWait);
-            this.toast("You have successfully updated your domain's custom data!", {
+            this.toast("You have successfully updated your ID's custom data!", {
               type: TYPE.SUCCESS,
               onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
             });
@@ -262,7 +262,7 @@ export default {
       }
 
       if(this.fields.findIndex(x => x.dataKey == "url") === -1) {
-        this.fields.push({dataKey: "url", dataValue: "", valuePlaceholder: "Add any URL to redirect domain to"});
+        this.fields.push({dataKey: "url", dataValue: "", valuePlaceholder: "Add any URL to redirect ID to"});
       }
 
       if(this.fields.findIndex(x => x.dataKey == "twitter") === -1) {
