@@ -78,12 +78,16 @@
       <button class="btn btn-primary btn-lg btn-Disconnected" @click="changeNetwork(this.getTldChainName)">Switch to {{getTldChainName}}</button>
     </div>
 
+    <div class="text-align-header mt-5">
+      <h2>BE A PART OF HISTORY AND CLAIM YOUR ON-CHAIN ID</h2>
+    </div>
+
     <div class="row mt-5">
       <div class="col-md-6 offset-md-3 table-container">
         <table class="table table-borderless table-ppl">
           <thead class="table-light">
             <tr>
-              <th scope="col">Name length</th>
+              <th scope="col">ID length</th>
               <th scope="col">Price</th>
             </tr>
           </thead>
