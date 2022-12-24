@@ -1,7 +1,9 @@
 <template>
   <div class="container text-center">
-    <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
-
+    <div class="u.header">
+      <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
+    </div>
+    
     <div class="text-align-header mt-5">
       <h1>Get your {{getTldName}} name!</h1>
     </div>
