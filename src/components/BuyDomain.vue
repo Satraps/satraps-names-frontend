@@ -2,7 +2,7 @@
   <div class="container text-center">
     <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
 
-    <div class="text-align-header mt-5">
+    <!-- <div class="text-align-header mt-5"> -->
       <div class="content1">
         <div class="content1__container">
           <p class="content1__container__text">Your</p>    
@@ -14,7 +14,7 @@
           </ul>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
       <div class="input-group domain-input input-group-lg input-sizing">
