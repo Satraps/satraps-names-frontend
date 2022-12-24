@@ -96,7 +96,16 @@ hr {
   background-color: #e26670;
 }
 
-.content1 {  
+.content1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 160px;
+  overflow:hidden;
+  
+  font-family: 'Lato', sans-serif;
+  font-size: 35px;
   line-height: 40px;
   color: #ecf0f1;
   
@@ -106,11 +115,25 @@ hr {
     height: 40px;
     padding: 0 40px;
 
+    &:before {
+      content: '[';
+      left: 0;
+    }
+
+    &:after {
+      content: ']';
+      position: absolute;
+      right: 0;
+    }
+
     &:after, &:before {
+      position: absolute;
       top: 0;
+      
       color: #16a085;
       font-size: 42px;
       line-height: 40px;
+      
       -webkit-animation-name: opacity;
       -webkit-animation-duration: 2s;
       -webkit-animation-iteration-count: infinite;
@@ -130,6 +153,7 @@ hr {
       padding-left: 110px;
       text-align: left;
       list-style: none;
+      
       -webkit-animation-name: change;
       -webkit-animation-duration: 10s;
       -webkit-animation-iteration-count: infinite;
