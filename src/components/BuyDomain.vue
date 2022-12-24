@@ -116,8 +116,6 @@
     
   </div>
 
-  <Referral v-if="isActivated" />
-
 </template>
 
 <script>
