@@ -3,16 +3,16 @@
     <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
 
     <div class="text-align-header mt-5">
-      <h1>Claim a free {{getTldName}} name!</h1>
+      <h1>Claim a free {{getTldName}} ID!</h1>
 
-      <p>If you hold a Satrap NFT, you can mint 1 free domain per Satrap* (any length).</p>
+      <p>If you hold a Satrap NFT, you can mint 1 free ID per Satrap* (any length).</p>
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
       <div class="input-group domain-input input-group-lg input-sizing">
         <input
           v-model="chosenDomainName" 
-          placeholder="enter the desired name"
+          placeholder="enter the desired ID"
           type="text" 
           class="form-control text-end border-2 border-end-0 border-light"
           aria-label="Text input with dropdown button"
@@ -33,7 +33,7 @@
 
     <!-- Minter contract paused -->
     <button v-if="isActivated && getMinterPaused" class="btn btn-primary btn-lg mt-3 buy-button" :disabled="true">
-      <span v-if="getMinterPaused">Minting paused</span>
+      <span v-if="getMinterPaused">Claiming is paused</span>
     </button>
 
     <!-- Not eligible -->
@@ -42,7 +42,7 @@
       class="btn btn-primary btn-lg mt-3 buy-button" 
       :disabled="waiting || buyNotValid(chosenDomainName).invalid"
     >
-      <span>Not eligible</span>
+      <span>Sorry, You're not eligible.</span>
     </button>
 
     <!-- Claim domain -->
@@ -53,7 +53,7 @@
       :disabled="waiting || buyNotValid(chosenDomainName).invalid"
     >
       <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
-      <span>Claim free domain</span>
+      <span>CLAIM free ID</span>
     </button>
 
     <!-- Connect Wallet -->
@@ -65,7 +65,7 @@
 
     <div>
       <small>
-        * Once a domain is minted, the Satrap NFT will not be eligible anymore even if it's transferred or sold to another address.
+        * Once an ID is minted, the Satrap NFT will not be eligible anymore even if it's transferred or sold to another address.
       </small>
     </div>
     
@@ -159,7 +159,7 @@ export default {
       const existingHolder = await this.getTldContract.getDomainHolder(this.domainLowerCase);
 
       if (existingHolder !== ethers.constants.AddressZero) {
-        this.toast("Sorry, but this domain name is already taken...", {type: TYPE.ERROR});
+        this.toast("Sorry, but this ID is already taken...", {type: TYPE.ERROR});
         this.waiting = false;
         return;
       }
@@ -197,7 +197,7 @@ export default {
 
         if (receipt.status === 1) {
           this.toast.dismiss(toastWait);
-          this.toast("You have successfully claimed the domain!", {
+          this.toast("You have successfully claimed your ID!", {
             type: TYPE.SUCCESS,
             onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
           });
