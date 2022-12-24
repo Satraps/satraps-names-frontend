@@ -79,7 +79,7 @@
       <h3>BE A PART OF HISTORY AND CLAIM YOUR ON-CHAIN ID</h3>
     </div>
 
-    <div class="row mt-5">
+    <!-- <div class="row mt-5">
       <div class="col-md-6 offset-md-3 table-container">
         <table class="table table-borderless table-ppl">
           <thead class="table-light">
@@ -112,7 +112,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
     
   </div>
 
