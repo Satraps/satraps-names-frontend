@@ -370,6 +370,8 @@ tr:last-of-type td:last-of-type {
 }
 
 .table-ppl {
+  background-color: #231e47;
+  opacity: 0.25;
   border: 2px solid white;
   border-radius: 10px !important;
   border-collapse: separate;
