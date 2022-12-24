@@ -1,5 +1,5 @@
 <template>
-  <BuyDomain />
+  <ClaimFreeMint />
 </template>
 
 <script>
