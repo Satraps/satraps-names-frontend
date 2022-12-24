@@ -199,7 +199,8 @@ export default {
 }
 
 .table {
-  --bs-table-bg: transparent;
+  --bs-table-bg: #231e47;
+  opacity: 0.75;
   color: #fff;
   border-color: #fff;
 }
