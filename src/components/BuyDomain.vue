@@ -8,9 +8,11 @@
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
       <div class="input-group domain-input input-group-lg input-sizing">
-        <p class="mt-5 price-text">
-            Price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
-        </p>
+        <div class="text-align-header">
+          <p class="mt-5 price-text">
+              Price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
+          </p>
+        </div>
 
         <input
           v-model="chosenDomainName" 
