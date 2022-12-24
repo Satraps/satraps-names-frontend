@@ -12,7 +12,7 @@
       <div class="input-group domain-input input-group-lg input-sizing">
         <input
           v-model="chosenDomainName" 
-          placeholder="enter the desired ID"
+          placeholder="enter your desired ID"
           type="text" 
           class="form-control text-end border-2 border-end-0 border-light"
           aria-label="Text input with dropdown button"
