@@ -96,6 +96,55 @@ hr {
   background-color: #e26670;
 }
 
+.content1 {  
+  line-height: 40px;
+  color: #ecf0f1;
+  
+  &__container {
+    font-weight: 600;
+    overflow: hidden;
+    height: 40px;
+    padding: 0 40px;
+
+    &:after, &:before {
+      top: 0;
+      color: #16a085;
+      font-size: 42px;
+      line-height: 40px;
+      -webkit-animation-name: opacity;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: opacity;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+    &__text {
+      display: inline;
+      float: left;
+      margin: 0;
+    }
+
+    &__list {
+      margin-top: 0;
+      padding-left: 110px;
+      text-align: left;
+      list-style: none;
+      -webkit-animation-name: change;
+      -webkit-animation-duration: 10s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: change;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+
+      &__item {
+        line-height:40px;
+        margin:0;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 767px) {
   #sidebar-container {
     margin-bottom: 15px;
