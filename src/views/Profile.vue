@@ -38,7 +38,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="container">
+          <div class="container blueish">
             <h3>ID's</h3>
 
             <table class="table table-hover mt-4 mb-4">
@@ -198,10 +198,13 @@ export default {
   cursor: pointer
 }
 
-.table {
-  --bs-table-bg: #231e47;
+.blueish {
   background-color: #231e47;
   opacity: 0.75;
+}
+
+.table {
+  --bs-table-bg: transparent;
   color: #fff;
   border-color: #fff;
 }
