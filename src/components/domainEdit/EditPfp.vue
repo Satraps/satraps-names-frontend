@@ -26,7 +26,7 @@
         <div class="modal-body">
           <p>
             Enter the address and token ID of an NFT that you own and want to designate as the main PFP of the  
-            {{domainName}}.{{tld}} domain.
+            {{domainName}}.{{tld}} ID.
           </p>
 
           <div class="mb-3" v-if="domainData">
