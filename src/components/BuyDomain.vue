@@ -318,7 +318,7 @@ export default {
 
 .buy-button {
   margin-bottom: 20px;
-  background-color: #cc3333;
+  background-color: #cc3333 !important;
 }
 
 .container {
