@@ -199,7 +199,8 @@ export default {
 }
 
 .table {
-  --bs-table-bg: rgba(35, 30, 71, 0.7);
+  --bs-table-bg: #231e47;
+  background-color: #231e47;
   opacity: 0.75;
   color: #fff;
   border-color: #fff;
