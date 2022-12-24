@@ -4,26 +4,16 @@
     
     <span v-if="isActivated && isNetworkSupported"> | </span>
 
-    <!--<router-link to="/about">About</router-link><span> | </span>-->
-
     <router-link v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin" to="/admin">Admin</router-link>
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
 
     <a target="_blank" href="https://satraps.io/">Operated by The Satraps</a> | 
-    <a target="_blank" href="https://punk.domains">Powered by Punk Domains</a>
+    <a target="_blank" href="https://songbird.domains">Songbird Domains</a>
   </div>
 
   <div class="container-fluid text-center">
 
-    <a class="icons" href="http://docs.punk.domains" target="_blank"><i class="bi bi-journal-text"></i></a>
-
-    <a class="icons" target="_blank" href="https://github.com/punk-domains"><i class="bi bi-github"></i></a>
-
-    <a class="icons" target="_blank" href="https://discord.gg/ZRwpRZPqMH"><i class="bi bi-discord"></i></a>
-
     <a class="icons" target="_blank" href="https://twitter.com/TheSatraps"><i class="bi bi-twitter"></i></a>
-
-    <a class="icons" href="http://blog.punk.domains" target="_blank"><i class="bi bi-pencil-square"></i></a>
     
   </div>
 </template>
