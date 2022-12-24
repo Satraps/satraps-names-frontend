@@ -37,7 +37,7 @@
 
     <!-- Minter contract paused -->
     <button v-if="isActivated && getMinterPaused" class="btn btn-primary btn-lg mt-3 buy-button" :disabled="true">
-      <span v-if="getMinterPaused">Buying paused</span>
+      <span v-if="getMinterPaused">Claiming is paused</span>
     </button>
 
     <!-- Not eligible -->
@@ -66,7 +66,7 @@
       :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
     >
       <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
-      <span>Buy domain</span>
+      <span>Claim ID</span>
     </button>
 
     <!-- Connect Wallet -->
@@ -217,7 +217,7 @@ export default {
       const existingHolder = await this.getTldContract.getDomainHolder(this.domainLowerCase);
 
       if (existingHolder !== ethers.constants.AddressZero) {
-        this.toast("Sorry, but this domain name is already taken...", {type: TYPE.ERROR});
+        this.toast("Sorry, but this ID is already taken...", {type: TYPE.ERROR});
         this.waiting = false;
         return;
       }
@@ -259,7 +259,7 @@ export default {
 
         if (receipt.status === 1) {
           this.toast.dismiss(toastWait);
-          this.toast("You have successfully bought the domain!", {
+          this.toast("You have successfully claimed your ID!", {
             type: TYPE.SUCCESS,
             onClick: () => window.open(this.getBlockExplorerBaseUrl+"/tx/"+tx.hash, '_blank').focus()
           });
