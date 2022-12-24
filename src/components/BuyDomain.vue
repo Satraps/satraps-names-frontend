@@ -318,6 +318,34 @@ export default {
 
 .buy-button {
   margin-bottom: 20px;
+  display: inline-block;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	min-width:100px;
+	padding: 22px 33px;
+	font-family: 'Lobster', cursive;
+	font-size: 26px;
+	line-height: 26px;
+	text-decoration: none;
+	color: #FFF;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.75);
+	background: #5e0d0c;
+	outline: none;
+	border-radius: 15px;
+	border: 1px solid #4c0300;
+	box-shadow:
+		inset 1px 1px 0px rgba(255,255,255,0.25),
+		inset 0 0 6px #a23227,
+		inset 0 80px 80px -40px #ac3223,
+		1px 1px 3px rgba(0,0,0,0.75);
+		
+	position: relative;
+	overflow: visible;
+	-webkit-transition: 500ms linear;
+	   -moz-transition: 500ms linear;
+	     -o-transition: 500ms linear;
+					transition: 500ms linear;
 }
 
 .container {
