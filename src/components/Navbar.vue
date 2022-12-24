@@ -19,7 +19,7 @@
               v-if="getFreeMintEligible" 
               class="btn btn-primary mx-2 navbar-menu-btn" 
               to="/claim-free-domain"
-            >Claim Free Mint</router-link>
+            >Claim Free ID</router-link>
 
             <div v-if="isActivated" class="btn-group mx-2 navbar-menu-btn">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,8 +43,8 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <router-link tag="li" class="dropdown-item" to="/profile">Profile</router-link>
-                <router-link tag="li" class="dropdown-item" to="/mint-domains">Buy domain</router-link>
-                <router-link tag="li" class="dropdown-item" to="/search-domain">Search domain</router-link>
+                <router-link tag="li" class="dropdown-item" to="/mint-domains">Buy ID</router-link>
+                <router-link tag="li" class="dropdown-item" to="/search-domain">Search</router-link>
                 <router-link tag="li" class="dropdown-item" to="/send-tokens">Send tokens</router-link>
                 <!-- <router-link tag="li" class="dropdown-item" to="/about">About</router-link>
                 <router-link tag="li" class="dropdown-item" to="/browser">Browser extension</router-link> -->
