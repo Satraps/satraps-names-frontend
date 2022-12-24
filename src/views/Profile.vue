@@ -63,8 +63,6 @@
         </div>
       </div>
 
-      <Referral />
-
     </div>
   </div>
 
