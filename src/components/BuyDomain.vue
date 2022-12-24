@@ -1,8 +1,6 @@
 <template>
   <div class="container text-center">
-    <div class="u-header">
-      <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
-    </div>
+    <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
     
     <div class="text-align-header mt-5">
       <h1>Get your {{getTldName}} name!</h1>
@@ -12,7 +10,7 @@
       <div class="input-group domain-input input-group-lg input-sizing">
         <input
           v-model="chosenDomainName" 
-          placeholder="enter the desired name"
+          placeholder="*.SATRAP"
           type="text" 
           class="form-control text-end border-2 border-end-0 border-light"
           aria-label="Text input with dropdown button"
