@@ -7,9 +7,7 @@
     </div>
 
     <div class="text-align-header">
-      <p class="mt-5 price-text">
-          Price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
-      </p>
+        Price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
@@ -79,7 +77,7 @@
     </div>
 
     <div class="text-align-header mt-5">
-      <h2>BE A PART OF HISTORY AND CLAIM YOUR ON-CHAIN ID</h2>
+      <h3>BE A PART OF HISTORY AND CLAIM YOUR ON-CHAIN ID</h3>
     </div>
 
     <div class="row mt-5">
