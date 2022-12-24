@@ -3,17 +3,7 @@
     <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
 
     <div class="text-align-header mt-5">
-      <div class="content1">
-        <div class="content1__container">
-          <p class="content1__container__text">Your</p>    
-          <ul class="content1__container__list">
-            <li class="content1__container__list__item">COOTIE</li>
-            <li class="content1__container__list__item">SPARKTAN</li>
-            <li class="content1__container__list__item">SATRAP</li>
-            <li class="content1__container__list__item">CYBR</li>
-          </ul>
-        </div>
-      </div>
+      <h1>Get your {{getTldName}} name!</h1>
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
