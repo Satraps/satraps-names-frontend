@@ -1,14 +1,14 @@
 <template>
 
   <div class="container text-center">
-    <h3>Find a {{getTldName}} domain</h3>
+    <h3>Find a {{getTldName}} ID</h3>
 
     <div class="row mt-5">
       <div class="col-md-6 offset-md-3">
         <input 
           v-model="query"
           class="form-control text-center border-2 border-light"
-          placeholder="Enter a domain name"
+          placeholder="Enter a SATRAP ID"
           v-on:keyup.enter="findDomain"
         >
       </div>
@@ -100,7 +100,7 @@ export default {
               return;
             } else {
               // if not exists (holder is 0x0), show a toast
-              this.toast("This domain name has not been registered yet.", {type: TYPE.INFO});
+              this.toast("This ID has not been claimed yet.", {type: TYPE.INFO});
               this.waiting = false;
               return;
             }
