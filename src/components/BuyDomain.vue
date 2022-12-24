@@ -3,7 +3,17 @@
     <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
     
     <div class="text-align-header mt-5">
-      <h1>Your Satrap needs an ID</h1>
+      <div class="slde">
+        <div class="slde__container">
+          <p class="slde__container__text">Hello </p>
+          <ul class="slde__container__list">
+            <li class="slde__container__list__item">1 !</li>
+            <li class="slde__container__list__item">2 !</li>
+            <li class="slde__container__list__item">3 !</li>
+            <li class="slde__container__list__item">4 !</li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="text-align-header">
@@ -382,6 +392,78 @@ tr:last-of-type td:last-of-type {
 .tld-addon {
   background-color: white;
   color:#0D0F1A;
+}
+
+.slde {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 160px;
+  overflow:hidden;
+  font-family: 'Lato', sans-serif;
+  font-size: 35px;
+  line-height: 40px;
+  color: #ecf0f1;
+  
+  &__container {
+    font-weight: 600;
+    overflow: hidden;
+    height: 40px;
+    padding: 0 40px;
+
+    &:before {
+      content: '[';
+      left: 0;
+    }
+
+    &:after {
+      content: ']';
+      position: absolute;
+      right: 0;
+    }
+
+    &:after, &:before {
+      position: absolute;
+      top: 0;
+      
+      color: #16a085;
+      font-size: 42px;
+      line-height: 40px;
+      
+      -webkit-animation-name: opacity;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: opacity;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+    &__text {
+      display: inline;
+      float: left;
+      margin: 0;
+    }
+
+    &__list {
+      margin-top: 0;
+      padding-left: 110px;
+      text-align: left;
+      list-style: none;
+      
+      -webkit-animation-name: change;
+      -webkit-animation-duration: 10s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: change;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+
+      &__item {
+        line-height:40px;
+        margin:0;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {
