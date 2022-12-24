@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center">
-    <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
+    <!-- <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" /> -->
 
     <div class="text-align-header mt-5">
       <h1>Claim a free {{getTldName}} ID!</h1>
