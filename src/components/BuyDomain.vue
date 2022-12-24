@@ -3,11 +3,15 @@
     <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
     
     <div class="text-align-header mt-5">
-      <h1>Get your {{getTldName}} name!</h1>
+      <h1>Your Satrap needs an ID</h1>
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
       <div class="input-group domain-input input-group-lg input-sizing">
+        <p class="mt-5 price-text">
+            Price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
+        </p>
+
         <input
           v-model="chosenDomainName" 
           placeholder="*.SATRAP"
@@ -29,11 +33,6 @@
       </small>
     </p>
 
-    <div class="text-align-header">
-      <p class="mt-5 price-text">
-          Domain price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
-      </p>
-    </div>
 
     <!-- Minter contract paused -->
     <button v-if="isActivated && getMinterPaused" class="btn btn-primary btn-lg mt-3 buy-button" :disabled="true">
