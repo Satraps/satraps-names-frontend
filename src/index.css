@@ -64,7 +64,7 @@ hr {
   background: transparent;
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
 }
 
 .img-thumbnail {
