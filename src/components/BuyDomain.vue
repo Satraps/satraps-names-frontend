@@ -14,7 +14,7 @@
 
         <input
           v-model="chosenDomainName" 
-          placeholder="*.SATRAP"
+          placeholder="Enter your desired ID"
           type="text" 
           class="form-control text-end border-2 border-end-0 border-light"
           aria-label="Text input with dropdown button"
