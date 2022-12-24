@@ -15,11 +15,11 @@
 
           <div class="navbar-menu-buttons">
             
-            <router-link 
+            <!-- <router-link 
               v-if="getFreeMintEligible" 
               class="btn btn-primary mx-2 navbar-menu-btn freeid-button" 
               to="/claim-free-domain"
-            >Claim Free ID</router-link>
+            >Claim Free ID</router-link> -->
 
             <div v-if="isActivated" class="btn-group mx-2 navbar-menu-btn">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
