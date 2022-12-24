@@ -8,7 +8,7 @@
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
 
     <a target="_blank" href="https://satraps.io/">Operated by The Satraps</a> | 
-    <a target="_blank" href="https://songbird.domains">Songbird Domains</a>
+    <a target="_blank" href="https://songbird.domains">Powered by Songbird Domains</a>
   </div>
 
   <div class="container-fluid text-center">
