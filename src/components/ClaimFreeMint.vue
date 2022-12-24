@@ -3,7 +3,7 @@
     <!-- <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" /> -->
 
     <div class="text-align-header mt-5">
-      <h1>Claim a free {{getTldName}} ID!</h1>
+      <h1>Claim your free {{getTldName}} ID! 🎅 </h1>
 
       <p>If you hold a Satrap NFT, you can mint 1 free ID per Satrap* (any length).</p>
     </div>
