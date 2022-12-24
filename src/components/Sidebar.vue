@@ -30,11 +30,11 @@
     </router-link>
 
     <router-link v-if="getFreeMintEligible" class="btn btn-sidebar text-start" to="/profile/claim-free-domain">
-      <i class="bi bi-heart"></i> Claim free domain
+      <i class="bi bi-heart"></i> Claim free ID
     </router-link>
 
     <router-link class="btn btn-sidebar text-start" to="/profile/buy-domain">
-      <i class="bi bi-cart4"></i> Buy domain
+      <i class="bi bi-cart4"></i> Buy ID
     </router-link>
 
     <!--
@@ -44,7 +44,7 @@
     -->
 
     <router-link class="btn btn-sidebar text-start" to="/profile/search-domain">
-      <i class="bi bi-search"></i> Search domain
+      <i class="bi bi-search"></i> Search 
     </router-link>
 
     <router-link class="btn btn-sidebar text-start" to="/profile/send-tokens">
