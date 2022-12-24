@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center">
-    <div class="u.header">
+    <div class="u-header">
       <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
     </div>
     
