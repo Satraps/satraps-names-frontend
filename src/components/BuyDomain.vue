@@ -2,17 +2,15 @@
   <div class="container text-center">
     <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" />
     
-    <div class="text-align-header mt-5">
-      <div class="slde">
-        <div class="slde__container">
-          <p class="slde__container__text">Hello </p>
-          <ul class="slde__container__list">
-            <li class="slde__container__list__item">1 !</li>
-            <li class="slde__container__list__item">2 !</li>
-            <li class="slde__container__list__item">3 !</li>
-            <li class="slde__container__list__item">4 !</li>
-          </ul>
-        </div>
+    <div class="slde">
+      <div class="slde__container">
+        <p class="slde__container__text">Hello </p>
+        <ul class="slde__container__list">
+          <li class="slde__container__list__item">1 !</li>
+          <li class="slde__container__list__item">2 !</li>
+          <li class="slde__container__list__item">3 !</li>
+          <li class="slde__container__list__item">4 !</li>
+        </ul>
       </div>
     </div>
 
