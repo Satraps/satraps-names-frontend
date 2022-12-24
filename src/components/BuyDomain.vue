@@ -66,7 +66,7 @@
       :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
     >
       <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
-      <span>Claim ID</span>
+      <span>CLAIM ID</span>
     </button>
 
     <!-- Connect Wallet -->
