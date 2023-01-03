@@ -1,20 +1,23 @@
 <template>
-  <div class="container-fluid text-center mt-3">
+  <!-- <div class="container-fluid text-center mt-3">
     <router-link v-if="isActivated && isNetworkSupported" to="/profile">Profile</router-link>
     
     <span v-if="isActivated && isNetworkSupported"> | </span>
 
     <router-link v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin" to="/admin">Admin</router-link>
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
-
-    <a target="_blank" href="https://satraps.io/">Operated by The Satraps</a> | 
-    <a target="_blank" href="https://songbird.domains">Powered by Songbird Domains</a>
-  </div>
+  </div> -->
 
   <div class="container-fluid text-center">
-
-    <a class="icons" target="_blank" href="https://twitter.com/TheSatraps"><i class="bi bi-twitter"></i></a>
-    
+    <a href="https://satraps.io" target="_blank">
+      <img src="../assets/logo.png" width="115" height="115">
+    </a>
+    <div class="mt-2">
+      <img class="me-4" src="../assets/footer-icon.png" width="60">
+      <a href="https://twitter.com/TheSatraps" target="_blank">
+        <img src="../assets/twitter.png" width="40">
+      </a>
+    </div>
   </div>
 </template>
 

@@ -1,24 +1,24 @@
 <template>
-  <div class="container text-center">
+  <div class="text-center">
     <!-- <img class="img-fluid main-img rounded" src="../assets/satrap.jpg" /> -->
-
-    <div class="text-align-header mt-5">
-      <h1>Claim your free {{getTldName}} ID! 🎅 </h1>
-
-      <p>If you hold a Satrap NFT, you can mint 1 free ID per Satrap* (any length).</p>
+    <div class="text-align-header">
+      <h1 class="inter">Your <span class="animated-text px-2">
+        {{domain.name}}
+      </span> needs an ID!</h1>
+      <p class="header-desc text-bold">smaller/descriptive text to be <br> included here later</p>
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
       <div class="input-group domain-input input-group-lg input-sizing">
         <input
           v-model="chosenDomainName" 
-          placeholder="enter your desired ID"
+          placeholder="Enter your desired ID"
           type="text" 
-          class="form-control text-end border-2 border-end-0 border-light"
+          class="form-control"
           aria-label="Text input with dropdown button"
         >
 
-        <span class="input-group-text tld-addon border-2 border-light">
+        <span class="input-group-text tld-addon">
           <span v-if="loading" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
           <span>{{getTldName}}</span>
         </span>
@@ -56,19 +56,30 @@
       <span>CLAIM free ID</span>
     </button>
 
+    <!-- Discount chip -->
+    <div class="d-flex justify-content-center inter">
+      <div class="discount">
+        <div class="discount-line"></div>
+        <div class="row">
+          <p class="col-6">Price</p>
+          <p class="col-6">Partner Discount</p>
+        </div>
+
+      <div class="row">
+          <p class="col-6">XXXX SGB</p>
+          <p class="discount-text px-2 col-6" v-if="domain.address == address">CYBRs - 60% OFF</p>
+      </div>
+      </div>
+      
+    </div>
+
     <!-- Connect Wallet -->
-    <button v-if="!isActivated" class="btn btn-primary btn-lg mt-3 btn-Disconnected" @click="open">Connect wallet</button>
+    <button v-if="!isActivated" class="btn px-5 inter connect-wallet btn-lg mt-3 btn-Disconnected" @click="open">Mint ID</button>
+
 
     <div v-if="isActivated && !isNetworkSupported" class="mt-4">
-      <button class="btn btn-primary btn-lg btn-Disconnected" @click="changeNetwork(this.getTldChainName)">Switch to {{getTldChainName}}</button>
+      <button class="btn btn-primary btn-lg btn-Disconnected inter" @click="changeNetwork(this.getTldChainName)">Switch to {{getTldChainName}}</button>
     </div>
-
-    <div>
-      <small>
-        * Once an ID is minted, the Satrap NFT will not be eligible anymore even if it's transferred or sold to another address.
-      </small>
-    </div>
-    
   </div>
 
 </template>
@@ -93,8 +104,30 @@ export default {
       chosenAllowance: null,
       loading: false, // loading data
       waiting: false, // waiting for TX to complete
-      minterContract: null
+      minterContract: null,
+      domain: 'CYBR',
+      interval: null,
+      domains: [
+        {name: 'CYBR', address: '0x34FF649D709ccCEc77bCf433317176fD13246296'},
+        {name: 'SATRAP', address: ''},
+        {name: 'SPARKTAN', address: ''},
+        {name: 'SENATOR', address: ''},
+        {name: 'CITIZEN', address: ''}
+
+      ]
     }
+  },
+
+  mounted() {
+    this.interval = setInterval(() => {
+    let index = this.domains.indexOf(this.domain)
+    let nextIndex = index == 4 ? 0 : index + 1;
+      this.domain = this.domains[nextIndex]
+    }, 1000);
+  },
+
+  beforeUnmount() {
+    clearInterval(this.interval)
   },
 
   components: {
@@ -307,7 +340,9 @@ export default {
 }
 
 .domain-input > input {
-  color: #0D0F1A;
+  color: #00000066;
+  border-right: 1px solid #000000;
+  background: rgba(217, 217, 217, 0.8);
 }
 
 .domain-input > input::placeholder {
@@ -354,13 +389,50 @@ tr:last-of-type td:last-of-type {
 }
 
 .tld-addon {
-  background-color: white;
-  color:#0D0F1A;
+  background: rgba(217, 217, 217, 0.8);
 }
 
 @media only screen and (max-width: 767px) {
   .domain-input {
     width: 100%;
   }
+}
+
+@media only screen and (max-width: 1024px) {
+  .discount-line {
+    width: 100% !important;
+  }
+}
+
+.inter {
+  font-family: 'Inter';
+}
+
+.animated-text {
+  font-weight: 700;
+  color: #E83064;
+}
+
+.header-desc {
+  font-weight: bold;
+  font-family: 'American Captain';
+  font-size: 40px;
+  line-height: 42px;
+}
+
+.connect-wallet, .connect-wallet:hover  {
+    background: #CC3333;
+    border-radius: 23px;
+    color: white;
+}
+
+.discount-text {
+  background: rgba(5, 255, 0, 0.65);
+  border-radius: 16px;
+}
+
+.discount-line {
+  border: 1px solid #FFFFFF;
+  width: 463px;
 }
 </style>

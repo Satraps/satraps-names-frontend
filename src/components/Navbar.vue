@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <router-link to="/" class="navbar-brand">
+    <div class="container">
+      <a href="https://satraps.io" target="_blank">
         <img src="../assets/satraps-logo.png" alt="" class="d-inline-block navbar-img img-fluid">
-      </router-link>
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
               to="/claim-free-domain"
             >Claim Free ID</router-link> -->
 
-            <div v-if="isActivated" class="btn-group mx-2 navbar-menu-btn">
+            <div v-if="isActivated" class="btn-group mx-2">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {{getNetworkName}}
               </button>
@@ -37,7 +37,7 @@
               </ul>
             </div>
 
-            <div v-if="isActivated" class="btn-group mx-2 navbar-menu-btn">
+            <div v-if="isActivated" class="btn-group mx-2">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ getNameOrAddress }}
               </button>
@@ -53,7 +53,7 @@
               </ul>
             </div>
 
-            <button v-if="!isActivated" class="btn btn-primary mx-2 navbar-menu-btn" @click="open">Connect wallet</button>
+            <button v-if="!isActivated" class="btn mx-2 px-4 navbar-menu-btn" @click="open">Connect wallet</button>
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export default {
   border-radius: 0px 0px 10px 10px;
   /*background: linear-gradient(30deg, #C71585 30%, #c111c3 100%);*/
   background: transparent;
-  padding: 20px;
+/*  padding: 20px;*/
   
 }
 .navbar-img {
@@ -183,6 +183,11 @@ export default {
   url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAXCAYAAACFxybfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAodJREFUeNrsVb1rWlEUv2pN/GqspKRSKFYXWzEloIWif0Fn6dJChQ7OQil0qd3EzcEpg0OgdHDr4CQODk7VRlLMEIVqApX4We0zflR9/Z1Ui4T34ksaaAYP/Hzc673n/M6550PG8zz73yKjn0wm83fDYDAwo9HINBrNnwOQg4MDs0ql2lQqlfdAWont7ng8Pjw+Ps44nc4G1pI9EXWaSOzt7TGO42aH5Pv7+08ajUZ0MBiUeXEZd7vdL5VK5fX29rZ+5tQiEmdxKrlcjsEYczgcynK5/BKKv/IXFNz/XiqVXkHdjUuRIA9SqdRD8or/R8Ez9fr9fqHVakUR4c2z0REjIQuHw2ZcrPBXLCA0RHTezEdHjIQqkUhEr9I4HOILhQLf6/VoOUFEvDMiQiToDx1Cdz+bzZ6bUFarlel0OkkVUK/XWbvdPoVer5fh3ntsfwJ+CJ2XA4p0Op1bpBgJyxDehQQ6nQ5DZXHBYDBZq9V+EhFUndnr9drEqoc2bwJbwGPgtohuVSwWe2Gz2TZMJpNgRKi6qtUqg2EWj8dTgUDgo0KhWPN4PC70EvXOzs67fD6/S6kiRIKeZA1YJ2MiJNbdbvfTUCjkV6vVK2hcDF8GI2w0GrGTkxM2HA5PDxaLxSOfz/cWEfk81X0XIMMFgJJ/srBjCgk8IdcfuVyuZ36//7nFYtkQyAMumUzuRiKRD0jMFLa+AZOpYwqgB/ziBVqmVBKUO7eAB/R0WG/Z7XaTVqtdbTabHJL6EK2djBaBPHA0NSqpbUsiMUeEBgpF4Q5AbZrmSJ/yEWgBTaBNHl9kdkgmMUeG7qwAq9PqovceTA3zlxlgsuswyuXsGsiSxJLEkoSY/BZgAEjRodi+uBruAAAAAElFTkSuQmCC) no-repeat 100% 0;	
 }
 
+.navbar-menu-btn, .navbar-menu-btn:hover  {
+    background: #CC3333;
+    border-radius: 23px;
+    color: white;
+}
 @media only screen and (max-width: 767px) {
   .navbar-menu-btn {
     margin-bottom: 5px;
