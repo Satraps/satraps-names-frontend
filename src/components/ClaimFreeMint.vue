@@ -67,7 +67,7 @@
 
       <div class="row">
           <p class="col-6">XXXX SGB</p>
-          <p class="discount-text px-2 col-6" v-if="domain.address == address">CYBRs - 60% OFF</p>
+          <p class="discount-text px-2 col-6" v-if="domain.address == address && address != ''">CYBRs - 60% OFF</p>
       </div>
       </div>
       
