@@ -1,12 +1,12 @@
 <template>
   <div class="row">
-    <div class="col-md-3" id="sidebar-container">
+   <!--  <div class="col-md-3" id="sidebar-container">
       <Sidebar />
-    </div>
+    </div> -->
 
-    <div class="col-md-9">
+    <!-- <div class="col-md-9"> -->
       <BuyDomain />
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
