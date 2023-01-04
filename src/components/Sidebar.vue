@@ -26,11 +26,11 @@
     <hr />
 
     <router-link class="btn btn-sidebar text-start" to="/profile">
-      <i class="bi bi-person"></i> Profile
+      <img src="../assets/person.png" class="side-img">Profile
     </router-link>
 
     <router-link v-if="getFreeMintEligible" class="btn btn-sidebar text-start" to="/profile/claim-free-domain">
-      <i class="bi bi-heart"></i> Claim free ID
+      <img src="../assets/heart.png" class="side-img">Claim free ID
     </router-link>
 
     <!-- <router-link class="btn btn-sidebar text-start" to="/profile/buy-domain">
@@ -44,11 +44,11 @@
     -->
 
     <router-link class="btn btn-sidebar text-start" to="/profile/search-domain">
-      <i class="bi bi-search"></i> Search 
+      <img src="../assets/search.png" class="side-img">Search 
     </router-link>
 
     <router-link class="btn btn-sidebar text-start" to="/profile/send-tokens">
-      <i class="bi bi-send"></i> Send tokens
+      <img src="../assets/send.png" class="side-img">Send tokens
     </router-link>
 
     <!--
@@ -191,5 +191,11 @@ export default {
   border-color: transparent;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.side-img {
+  width: 23px;
+  margin-right: 12px;
+  height: 23px;
 }
 </style>

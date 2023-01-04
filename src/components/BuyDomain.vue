@@ -1,13 +1,21 @@
 <template>
   <div class="container text-center">
-    <div class="text-align-header">
-      <h1 class="inter">Your <span class="animated-text px-2">
-        {{domain.name}}
-      </span> needs an ID!</h1>
-      <p class="header-desc fw-bold">Smaller/descriptive text to be <br> included here later</p>
+    <div class="content inter">
+      <div class="content__container">
+        <p class="content__container__text">
+          Your &emsp;&emsp;&emsp;&emsp; needs an ID!
+        </p>
+        <ul class="content__container__list">
+          <li class="content__container__list__item">CYBR</li>
+          <li class="content__container__list__item">Satrap</li>
+          <li class="content__container__list__item">Senator</li>
+          <li class="content__container__list__item">Citizen</li>
+        </ul>
+      </div>
     </div>
+    <p class="header-desc mt-4 fw-bold">Smaller descriptive text to be <br> included here later</p>
 
-    <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
+    <div class="d-flex justify-content-center domain-input-container mb-3">
       <div class="input-group domain-input input-group-lg input-sizing">
 
         <input
@@ -431,19 +439,24 @@ tr:last-of-type td:last-of-type {
   }
 }
 
+@media only screen and (max-width: 450px) {
+  .content__container__text {
+    font-size: 25px !important;
+  }
+  .content__container__list__item {
+    font-size: 25px !important;
+    padding-left: 32px !important;
+  }
+}
+
 .header-desc {
   font-family: 'American Captain';
-  font-size: 45px;
-  line-height: 48px;
+  font-size: 35px;
+  line-height: 40px;
 }
 
 .inter {
   font-family: 'Inter';
-}
-
-.animated-text {
-  font-weight: 700;
-  color: #E83064;
 }
 
 .connect-wallet, .connect-wallet:hover  {
@@ -471,5 +484,88 @@ tr:last-of-type td:last-of-type {
   display: flex;
   margin: auto;
   flex-direction: column;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow:hidden;
+  width: 100%;
+  text-align: center;
+}
+
+.content__container {
+  font-weight: 600;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.content__container__text {
+  display: inline;
+  padding-left: 2px;
+  font-size: 35px;
+}
+
+.content__container__text2 {
+  display: inline;
+  float: right;
+}
+
+.content__container__list {
+  position: absolute;
+  text-align: left;
+  list-style: none;
+  -webkit-animation-name: change;
+  -webkit-animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: change;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;          
+}
+
+.content__container__list__item {
+  padding-left: 65px;
+  font-weight: 700;
+  font-size: 35px;
+  color: #E83064;
+}
+
+@-webkit-keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+@-o-keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+@-moz-keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+@keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
 }
 </style>
