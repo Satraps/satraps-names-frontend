@@ -424,11 +424,10 @@ tr:last-of-type td:last-of-type {
   .domain-input {
     width: 100%;
   }
-}
 
-@media only screen and (max-width: 1024px) {
-  .discount-line {
-    width: 100% !important;
+  .discount {
+    width: 90% !important;
+    height: auto !important;
   }
 }
 
