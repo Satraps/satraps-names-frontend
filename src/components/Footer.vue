@@ -10,12 +10,15 @@
 
   <div class="container-fluid text-center">
     <a href="https://satraps.io" target="_blank">
-      <img src="../assets/logo.png" width="115" height="115">
+      <img src="../assets/logo.png">
     </a>
-    <div class="mt-2">
-      <img class="me-4" src="../assets/footer-icon.png" width="60">
+    <div class="mt-2 d-flex justify-content-center align-items-center">
+      <img src="../assets/footer-icon.png" class="me-2">
+      <a href="https://twitter.com/TheSatraps" target="_blank" class="me-2">
+        <img src="../assets/twitter.png">
+      </a>
       <a href="https://twitter.com/TheSatraps" target="_blank">
-        <img src="../assets/twitter.png" width="40">
+        <img src="../assets/discord.png">
       </a>
     </div>
   </div>
