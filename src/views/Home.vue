@@ -1,15 +1,14 @@
 <template>
-  <BuyDomain />
+  <ClaimFreeMint />
 </template>
 
 <script>
-import BuyDomain from "../components/BuyDomain.vue";
-
+import ClaimFreeMint from "../components/ClaimFreeMint.vue";
 export default {
   name: "Home",
   
   components: {
-    BuyDomain
+    ClaimFreeMint
   }
 }
 </script>
