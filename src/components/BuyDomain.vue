@@ -507,6 +507,7 @@ tr:last-of-type td:last-of-type {
   position: absolute;
   text-align: left;
   list-style: none;
+  top: 2px;
   -webkit-animation-name: change;
   -webkit-animation-duration: 10s;
   -webkit-animation-iteration-count: infinite;
