@@ -1,20 +1,26 @@
 <template>
-  <div class="container-fluid text-center mt-3">
+  <!-- <div class="container-fluid text-center mt-3">
     <router-link v-if="isActivated && isNetworkSupported" to="/profile">Profile</router-link>
     
     <span v-if="isActivated && isNetworkSupported"> | </span>
 
     <router-link v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin" to="/admin">Admin</router-link>
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
+  </div> -->
 
-    <a target="_blank" href="https://satraps.io/">Operated by The Satraps</a> | 
-    <a target="_blank" href="https://songbird.domains">Powered by Songbird Domains</a>
-  </div>
-
-  <div class="container-fluid text-center">
-
-    <a class="icons" target="_blank" href="https://twitter.com/TheSatraps"><i class="bi bi-twitter"></i></a>
-    
+  <div class="container-fluid text-center footer">
+    <a href="https://id.satraps.io" target="_blank">
+      <img src="../assets/logo.png" width="60" height="60">
+    </a>
+    <div class="mt-2 d-flex justify-content-center align-items-center">
+      <img src="../assets/footer-icon.png" class="me-2">
+      <a href="https://twitter.com/TheSatraps" target="_blank" class="me-2">
+        <img src="../assets/twitter.png">
+      </a>
+      <a href="https://twitter.com/TheSatraps" target="_blank">
+        <img src="../assets/discord.png">
+      </a>
+    </div>
   </div>
 </template>
 
@@ -71,5 +77,11 @@ a:hover {
 
 .polygon:hover svg circle {
   fill: white;
+}
+
+.footer {
+  background: rgba(158, 8, 8, 0.2);
+  border-bottom: 3px solid rgba(65, 7, 7, 0.8);
+  border-top: 3px solid rgba(65, 7, 7, 0.8);
 }
 </style>

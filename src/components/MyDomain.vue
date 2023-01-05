@@ -1,5 +1,6 @@
 <template>
   <td>
+    <img src="../assets/user-square.png" class="me-2">
     <span>{{domain}}</span>
   </td>
   <td>
@@ -7,6 +8,7 @@
       class="text-click" 
       @click="this.$router.push({name: 'DomainDetails', params: {domainChain: getChainId, tld: domain.split('.')[1], domainName: domain.split('.')[0]}})"
     >
+    <img src="../assets/edit.png" class="me-1 mb-1">
       Edit ID data
     </span>
   </td>
@@ -15,12 +17,14 @@
       class="text-click" 
       @click="this.$router.push({name: 'TransferDomain', params: {tld: domain.split('.')[1], domainName: domain.split('.')[0]}})"
     >
+ 
+    <img src="../assets/transfer.png" class="me-1">
       Transfer ID
     </span>
   </td>
   <td>
     <span v-if="getUserSelectedName === domain">
-      <i class="bi bi-check2-circle"></i> Default
+      <img src="../assets/default.png" class="me-1"> Default
     </span>
 
     <span 
@@ -170,5 +174,9 @@ export default {
   color: white;
   text-decoration: underline;
   cursor: pointer;
+}
+
+td {
+  padding: 1.5rem 0.5rem !important
 }
 </style>

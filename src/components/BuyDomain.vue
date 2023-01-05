@@ -1,26 +1,35 @@
 <template>
   <div class="container text-center">
-    
-    <div class="text-align-header mt-5">
-      <h1>Your Satrap needs an ID</h1>
+    <div class="content inter">
+      <div class="content__container">
+        <p class="content__container__text">
+          Your &emsp; &emsp; &emsp; &nbsp; needs an ID!
+        </p>
+        <ul class="content__container__list">
+          <li class="content__container__list__item red">&nbsp;&nbsp;&nbsp;&nbsp;CYBR</li>
+          <li class="content__container__list__item cyan">&nbsp;&nbsp;&nbsp;&nbsp;Satrap</li>
+          <li class="content__container__list__item purple">&nbsp;&nbsp;Senator</li>
+          <li class="content__container__list__item blue">&nbsp;Sparktan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt7">
+    <p class="header-desc fw-bold inter">Join the ecosystem ethics discussions and participate <br> in issuing ethics on Songbird and Flare Network.<br> #BuildTogether</p>
+      
     </div>
 
-    <div class="text-align-header">
-        Price: {{Math.floor(getPrice)}} {{getPaymentTokenName}}
-    </div>
-
-    <div class="d-flex justify-content-center domain-input-container mb-3 mt-5">
+    <div class="d-flex justify-content-center domain-input-container mb-3">
       <div class="input-group domain-input input-group-lg input-sizing">
 
         <input
           v-model="chosenDomainName" 
           placeholder="Enter your desired ID"
           type="text" 
-          class="form-control text-end border-2 border-end-0 border-light"
+          class="form-control"
           aria-label="Text input with dropdown button"
         >
 
-        <span class="input-group-text tld-addon border-2 border-light">
+        <span class="input-group-text tld-addon">
           <span v-if="loading" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
           <span>{{getTldName}}</span>
         </span>
@@ -33,51 +42,68 @@
       </small>
     </p>
 
+    <!-- Discount -->
+    <div class="discount inter"> 
+      <div class="discount-line"></div>
+      <div class="row">
+        <p class="col-5">Price</p>
+        <p class="col-7">Partner Discount</p>
+      </div>
+      <div class="row">
+        <p class="col-6">
+          {{Math.floor(getPrice)}} {{getPaymentTokenName}}
+        </p>
+        <div class="col-6" v-if="domains.includes(address)">
+          <p class="discount-text p-1">Partner - 60% OFF</p>
+        </div>
+      </div>
 
-    <!-- Minter contract paused -->
-    <button v-if="isActivated && getMinterPaused" class="btn btn-primary btn-lg mt-3 buy-button" :disabled="true">
-      <span v-if="getMinterPaused">Claiming is paused</span>
-    </button>
 
-    <!-- Not eligible -->
-    <button 
-      v-if="isActivated && isNetworkSupported && !getMinterPaused && !getCanUserBuy" 
-      class="btn btn-primary btn-lg mt-3 buy-button" 
-      :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
-    >
-      <span>You need to own a Satrap NFT</span>
-    </button>
+      <!-- Minter contract paused -->
+      <button v-if="isActivated && getMinterPaused" class="connect-wallet px-5 btn-lg mt-3" :disabled="true">
+        <span v-if="getMinterPaused">Claiming is paused</span>
+      </button>
 
-    <!-- Too low ETH balance -->
-    <button 
-      v-if="isActivated && isNetworkSupported && !getMinterPaused && !hasUserEnoughTokens && getCanUserBuy" 
-      class="btn btn-primary btn-lg mt-3 buy-button" 
-      :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
-    >
-      <span>Your {{getPaymentTokenName}} balance is too low</span>
-    </button>
+      <!-- Not eligible -->
+      <button 
+        v-if="isActivated && isNetworkSupported && !getMinterPaused && !getCanUserBuy" 
+        class="connect-wallet btn-lg mt-3" 
+        :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
+      >
+        <span>You need to own a Satrap NFT</span>
+      </button>
 
-    <!-- Buy domain -->
-    <button 
-      v-if="isActivated && isNetworkSupported && getCanUserBuy && !getMinterPaused && hasUserEnoughTokens" 
-      class="btn btn-primary btn-lg mt-3 buy-button" 
-      @click="buyDomain" 
-      :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
-    >
-      <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
-      <span>CLAIM ID</span>
-    </button>
+      <!-- Too low ETH balance -->
+      <button 
+        v-if="isActivated && isNetworkSupported && !getMinterPaused && !hasUserEnoughTokens && getCanUserBuy" 
+        class="connect-wallet px-5 btn-lg mt-3" 
+        :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
+      >
+        <span>Your {{getPaymentTokenName}} balance is too low</span>
+      </button>
 
-    <!-- Connect Wallet -->
-    <button v-if="!isActivated" class="btn btn-primary btn-lg mt-3 btn-Disconnected" @click="open">Connect wallet</button>
+      <!-- Buy domain -->
+      <button 
+        v-if="isActivated && isNetworkSupported && getCanUserBuy && !getMinterPaused && hasUserEnoughTokens" 
+        class="connect-wallet px-5 btn-lg mt-3" 
+        @click="buyDomain" 
+        :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
+      >
+        <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+        <span>CLAIM ID</span>
+      </button>
+
+       <!-- Connect Wallet -->
+      <button v-if="!isActivated" class="btn connect-wallet px-5 btn-lg mt-3 btn-Disconnected" @click="open">Mint ID</button>
+     </div>
 
     <div v-if="isActivated && !isNetworkSupported" class="mt-4">
       <button class="btn btn-primary btn-lg btn-Disconnected" @click="changeNetwork(this.getTldChainName)">Switch to {{getTldChainName}}</button>
     </div>
 
-    <div class="text-align-header mt-5">
+   <!--  <div class="text-align-header mt-5">
       <h3>BE A PART OF HISTORY AND CLAIM YOUR ON-CHAIN ID</h3>
-    </div>
+    </div> -->
 
     <!-- <div class="row mt-5">
       <div class="col-md-6 offset-md-3 table-container">
@@ -138,7 +164,12 @@ export default {
       chosenAllowance: null,
       loading: false, // loading data
       waiting: false, // waiting for TX to complete
-      minterContract: null
+      minterContract: null,
+      domain: 'CYBR',
+      domains: [
+        '0x34FF649D709ccCEc77bCf433317176fD13246296',
+        '0x213Ac5a9EBe9dea834f3aCc45D1fBA85935BCA22'
+      ]
     }
   },
 
@@ -306,6 +337,9 @@ export default {
 
 
 <style scoped>
+
+@import url('https://fonts.cdnfonts.com/css/inter');
+
 .and {
   font-size: 1.7em;
   vertical-align: bottom;
@@ -319,7 +353,7 @@ export default {
 }
 
 .container {
-  padding-top: 80px;
+  padding-top: 90px;
   padding-bottom: 50px;
 }
 
@@ -328,7 +362,10 @@ export default {
 }
 
 .domain-input > input {
-  color: #0D0F1A;
+  color: #00000066;
+  border-right: 1px solid #000000;
+  border-radius: 27px;
+  background: rgba(217, 217, 217, 0.8);
 }
 
 .domain-input > input::placeholder {
@@ -337,7 +374,7 @@ export default {
 }
 
 .domain-input-container {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .error {
@@ -377,13 +414,172 @@ tr:last-of-type td:last-of-type {
 }
 
 .tld-addon {
-  background-color: white;
+  background-color: rgba(217, 217, 217, 0.8);
   color:#0D0F1A;
+  border-bottom-right-radius: 27px !important;
+  border-top-right-radius: 27px !important;
 }
 
 @media only screen and (max-width: 767px) {
   .domain-input {
     width: 100%;
   }
+
+  .discount {
+    width: 90% !important;
+    height: auto !important;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .content__container__text {
+    font-size: 30px !important;
+  }
+  .content__container__list__item {
+    font-size: 30px !important;
+    padding-left: 42px !important;
+  }
+}
+
+.header-desc {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.inter {
+font-family: 'Inter', sans-serif;
+}
+
+.connect-wallet, .connect-wallet:hover  {
+  background: #CC3333;
+  border-radius: 23px;
+  color: white;
+}
+
+.discount-text {
+  background: rgba(5, 255, 0, 0.65);
+  border-radius: 16px;
+  max-width: 118px;
+  font-size: 11px;
+}
+
+.discount-line {
+  border: 1px solid #FFFFFF;
+}
+
+.mt7 {
+  margin-top: 7rem;
+}
+
+.discount {
+  background: rgba(180, 180, 180, 0.2);
+  border: 1px solid #000000;
+  border-radius: 19px;
+  padding: 20px;
+  width: 381px;
+  height: 200px;
+  display: flex;
+  margin: auto;
+  margin-bottom: 7rem;
+  margin-top: 25px;
+  flex-direction: column;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow:hidden;
+  width: 100%;
+  text-align: center;
+}
+
+.content__container {
+  font-weight: 600;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.content__container__text {
+  display: inline;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
+}
+
+.content__container__list {
+  position: absolute;
+  text-align: left;
+  list-style: none;
+  top: 2px;
+  -webkit-animation-name: change;
+  -webkit-animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  animation-name: change;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;          
+}
+
+.content__container__list__item {
+  padding-left: 1.9em;
+  font-weight: 700;
+  font-size: 65px;
+  padding-top: 5px;
+  color: #E83064;
+}
+
+@-webkit-keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+@-o-keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+@-moz-keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+@keyframes change {
+  0%, 12.66%, 100% {transform:translate3d(0,0,0);}
+  16.66%, 29.32% {transform:translate3d(0,-25%,0);}
+  33.32%,45.98% {transform:translate3d(0,-50%,0);}
+  49.98%,62.64% {transform:translate3d(0,-75%,0);}
+  66.64%,79.3% {transform:translate3d(0,-50%,0);}
+  83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+.cyan {
+  color: cyan
+}
+.purple {
+  color: purple
+}
+.red {
+  color: #cc3333
+}
+.blue {
+  color: blue
 }
 </style>
