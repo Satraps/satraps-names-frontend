@@ -8,7 +8,11 @@
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
   </div> -->
 
-  <div class="container-fluid text-center">
+  <div class="container-fluid text-center" style="background: rgba(158, 8, 8, 0.2);
+  border-bottom: 5px solid rgba(65, 7, 7, 0.8);
+  border-top: 5px solid rgba(65, 7, 7, 0.8);
+
+  ">
     <a href="https://satraps.io" target="_blank">
       <img src="../assets/logo.png">
     </a>

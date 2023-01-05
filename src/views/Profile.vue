@@ -1,14 +1,12 @@
 <template>
 
-  <div class="row">
+  <div class="row main-wrapper me-5">
     <div class="col-md-3" id="sidebar-container">
       <Sidebar />
     </div>
-
-    <div class="col-md-9">
-
+    <div class="col-md-9" style="padding: 20px;">
       <!-- Show this if user is not connected -->
-      <div class="row" v-if="!isActivated">
+      <div class="row ms-5" v-if="!isActivated">
         <div class="col-md-12 mb-3">
           <div class="container text-center">
             <h3><i class="bi bi-exclamation-triangle"></i> Not connected <i class="bi bi-exclamation-triangle"></i></h3>
@@ -20,28 +18,37 @@
       </div>
 
       <!-- Address and balance -->
-      <div class="row" v-if="isActivated">
-        <div class="col-md-6 mb-3">
-          <div class="container text-center">
-            <h3>Address</h3>
-            <p class="text-break">{{getUserAddress}}</p>
+      <div class="row card-ad ms-5" v-if="isActivated">
+        <div class="col-md-6 py-3 text-black mt-4 px-5">
+          <div class="">
+            <h3 class="fw-900">Address</h3>
+            <p class="address-ballance fs-12">{{getUserAddress}}</p>
+          </div>
+          <div class="pt-2">
+            <h3 class="fw-900">Ballance</h3>
+            <p class="balance fs-12">{{ getUserBalance }} {{this.getPaymentTokenName}}</p>
           </div>
         </div>
 
-        <div class="col-md-6 mb-3">
-          <div class="container text-center">
-            <h3>Balance</h3>
-            <p class="text-break">{{ getUserBalance }} {{this.getPaymentTokenName}}</p>
+        <div class="col-md-6 d-flex align-items-center right">
+          <div class="text-center ms-5">
+
+           <div class="d-flex">
+              <img src="../assets/vote.png" width="37" height="43" class="mb-2 me-4">
+              <h1 class="vote">Vote Delegation</h1>
+           </div>
+            <p class="text-uppercase fs-12 text-gray">Delegate your ethics votes to a Satrap <br> party or Senator</p>
+            <button class="btn coming-soon px-4">Coming soon</button>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-5 ms-3">
         <div class="col-md-12">
-          <div class="container blueish">
-            <h3>ID's</h3>
+          <div class="container">
+            <h3 class="border-bottom d-inline-block">Your IDs:</h3>
 
-            <table class="table table-hover mt-4 mb-4">
+            <table class="table table-hover mb-4">
               <tbody>
                 <tr v-for="domainName in getUserAllDomainNames" :key="domainName">
                   <MyDomain :domain="domainName" />
@@ -213,4 +220,72 @@ export default {
   --bs-table-hover-bg: transparent;
   --bs-table-hover-color: none;
 }
+
+.fw-900 {
+  font-weight: 900;
+}
+
+.right {
+  background-color: rgb(30 29 71);
+  border-top-left-radius: 155px;
+  border-bottom-left-radius: 155px;
+  color: #FFFFFF;;
+}
+
+.card-ad {
+  background: rgba(255, 255, 255, 0.87);
+  box-shadow: 9px 7px 44px -10px rgba(251, 0, 0, 0.57);
+  border-radius: 20px;
+}
+
+.vote {
+  font-size: 36px;
+}
+
+.coming-soon {
+  background: rgba(204, 51, 51, 0.8);
+  border-radius: 16px;
+  color: white;
+}
+
+.coming-soon:hover {
+  color: white;
+}
+
+.balance {
+  color: rgba(251, 0, 0, 0.57);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.fs-12 {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.text-gray {
+  color: gray;
+}
+
+#sidebar-container {
+  background: rgba(158, 8, 8, 0.2);
+  border-right: 5px solid rgba(65, 7, 7, 0.8);
+}
+
+@media only screen and (max-width: 768px) {
+  .card-ad {
+    margin-left: 0px !important;
+  }
+  .vote {
+    font-size: 25px;
+  }
+  .right > div {
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .main-wrapper {
+    margin-right: 0px !important;
+  }
+}
+
 </style>

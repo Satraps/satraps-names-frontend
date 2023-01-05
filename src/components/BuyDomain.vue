@@ -13,7 +13,10 @@
         </ul>
       </div>
     </div>
+    <div class="mt-5">
     <p class="header-desc mt-4 fw-bold">Smaller descriptive text to be <br> included here later</p>
+      
+    </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3">
       <div class="input-group domain-input input-group-lg input-sizing">
@@ -78,14 +81,16 @@
     <div class="discount inter"> 
       <div class="discount-line"></div>
       <div class="row">
-        <p class="col-6">Price</p>
-        <p class="col-6">Partner Discount</p>
+        <p class="col-5">Price</p>
+        <p class="col-7">Partner Discount</p>
       </div>
       <div class="row">
         <p class="col-6">
           {{Math.floor(getPrice)}} {{getPaymentTokenName}}
         </p>
-        <p class="discount-text col-6" v-if="domain.address == address && address != ''">CYBRs - 60% OFF</p>
+        <div class="col-6" v-if="domains.includes(address)">
+          <p class="discount-text p-1">CYBRs - 60% OFF</p>
+        </div>
       </div>
        <!-- Connect Wallet -->
       <button v-if="!isActivated" class="btn connect-wallet px-5 btn-lg mt-3 btn-Disconnected" @click="open">Mint ID</button>
@@ -160,32 +165,15 @@ export default {
       waiting: false, // waiting for TX to complete
       minterContract: null,
       domain: 'CYBR',
-      interval: null,
       domains: [
-        {name: 'CYBR', address: '0x34FF649D709ccCEc77bCf433317176fD13246296'},
-        {name: 'SATRAP', address: ''},
-        {name: 'SPARKTAN', address: ''},
-        {name: 'SENATOR', address: ''},
-        {name: 'CITIZEN', address: ''}
-
+        '0x34FF649D709ccCEc77bCf433317176fD13246296',
+        '0x218E77E286567270Fe20dd6e1c2EF32eDBf6976a'
       ]
     }
   },
 
   components: {
     Referral
-  },
-
-  mounted() {
-    this.interval = setInterval(() => {
-    let index = this.domains.indexOf(this.domain)
-    let nextIndex = index == 4 ? 0 : index + 1;
-      this.domain = this.domains[nextIndex]
-    }, 1000);
-  },
-
-  beforeUnmount() {
-    clearInterval(this.interval)
   },
 
   computed: {
@@ -441,18 +429,20 @@ tr:last-of-type td:last-of-type {
 
 @media only screen and (max-width: 450px) {
   .content__container__text {
-    font-size: 25px !important;
+    font-size: 30px !important;
   }
   .content__container__list__item {
-    font-size: 25px !important;
-    padding-left: 32px !important;
+    font-size: 30px !important;
+    padding-left: 42px !important;
   }
 }
 
 .header-desc {
   font-family: 'American Captain';
-  font-size: 35px;
-  line-height: 40px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 70px;
 }
 
 .inter {
@@ -468,6 +458,8 @@ tr:last-of-type td:last-of-type {
 .discount-text {
   background: rgba(5, 255, 0, 0.65);
   border-radius: 16px;
+  max-width: 118px;
+  font-size: 11px;
 }
 
 .discount-line {
@@ -505,13 +497,10 @@ tr:last-of-type td:last-of-type {
 
 .content__container__text {
   display: inline;
-  padding-left: 2px;
-  font-size: 35px;
-}
-
-.content__container__text2 {
-  display: inline;
-  float: right;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 70px;
 }
 
 .content__container__list {
@@ -527,9 +516,9 @@ tr:last-of-type td:last-of-type {
 }
 
 .content__container__list__item {
-  padding-left: 65px;
+  padding-left: 1.9em;
   font-weight: 700;
-  font-size: 35px;
+  font-size: 70px;
   color: #E83064;
 }
 

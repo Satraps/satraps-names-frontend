@@ -139,7 +139,7 @@ export default {
 
 <style scoped>
 .main-container {
-  padding: 20px;
+/*  padding: 20px;*/
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;

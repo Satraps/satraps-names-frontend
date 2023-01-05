@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark header">
     <div class="container">
       <a href="https://satraps.io" target="_blank">
         <img src="../assets/satraps-logo.png" alt="" class="d-inline-block navbar-img img-fluid">
@@ -200,4 +200,12 @@ export default {
     flex-direction: column;
   }
 }
+
+.header {
+  background: rgba(158, 8, 8, 0.2);
+  border-top: 5px solid rgba(65, 7, 7, 0.8);
+  border-bottom: 5px solid rgba(65, 7, 7, 0.8);
+  border-radius: inherit;
+}
+
 </style>
