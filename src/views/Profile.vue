@@ -266,11 +266,6 @@ export default {
   color: gray;
 }
 
-#sidebar-container {
-  background: rgba(158, 8, 8, 0.2);
-  border-right: 5px solid rgba(65, 7, 7, 0.8);
-}
-
 @media only screen and (max-width: 768px) {
   .card-ad {
     margin-left: 0px !important;

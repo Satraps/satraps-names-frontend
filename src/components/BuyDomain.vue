@@ -3,18 +3,18 @@
     <div class="content inter">
       <div class="content__container">
         <p class="content__container__text">
-          Your &emsp;&emsp;&emsp;&emsp; needs an ID!
+          Your &emsp; &emsp; &emsp; needs an ID!
         </p>
         <ul class="content__container__list">
-          <li class="content__container__list__item">CYBR</li>
-          <li class="content__container__list__item">Satrap</li>
-          <li class="content__container__list__item">Senator</li>
-          <li class="content__container__list__item">Citizen</li>
+          <li class="content__container__list__item red">CYBR</li>
+          <li class="content__container__list__item cyan">Satrap</li>
+          <li class="content__container__list__item purple">Senator</li>
+          <li class="content__container__list__item blue">Citizen</li>
         </ul>
       </div>
     </div>
-    <div class="mt-5">
-    <p class="header-desc mt-4 fw-bold">Smaller descriptive text to be <br> included here later</p>
+    <div class="mt7">
+    <p class="header-desc fw-bold">Join the ecosystem ethics discussions and participate <br> in issuing ethics on Songbird and Flare Network.<br> #BuildTogether</p>
       
     </div>
 
@@ -42,41 +42,6 @@
       </small>
     </p>
 
-
-    <!-- Minter contract paused -->
-    <button v-if="isActivated && getMinterPaused" class="btn btn-primary btn-lg mt-3 buy-button" :disabled="true">
-      <span v-if="getMinterPaused">Claiming is paused</span>
-    </button>
-
-    <!-- Not eligible -->
-    <button 
-      v-if="isActivated && isNetworkSupported && !getMinterPaused && !getCanUserBuy" 
-      class="btn btn-primary btn-lg mt-3 buy-button" 
-      :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
-    >
-      <span>You need to own a Satrap NFT</span>
-    </button>
-
-    <!-- Too low ETH balance -->
-    <button 
-      v-if="isActivated && isNetworkSupported && !getMinterPaused && !hasUserEnoughTokens && getCanUserBuy" 
-      class="btn btn-primary btn-lg mt-3 buy-button" 
-      :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
-    >
-      <span>Your {{getPaymentTokenName}} balance is too low</span>
-    </button>
-
-    <!-- Buy domain -->
-    <button 
-      v-if="isActivated && isNetworkSupported && getCanUserBuy && !getMinterPaused && hasUserEnoughTokens" 
-      class="btn btn-primary btn-lg mt-3 buy-button" 
-      @click="buyDomain" 
-      :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
-    >
-      <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
-      <span>CLAIM ID</span>
-    </button>
-
     <!-- Discount -->
     <div class="discount inter"> 
       <div class="discount-line"></div>
@@ -92,6 +57,42 @@
           <p class="discount-text p-1">CYBRs - 60% OFF</p>
         </div>
       </div>
+
+
+      <!-- Minter contract paused -->
+      <button v-if="isActivated && getMinterPaused" class="connect-wallet px-5 btn-lg mt-3" :disabled="true">
+        <span v-if="getMinterPaused">Claiming is paused</span>
+      </button>
+
+      <!-- Not eligible -->
+      <button 
+        v-if="isActivated && isNetworkSupported && !getMinterPaused && !getCanUserBuy" 
+        class="connect-wallet btn-lg mt-3" 
+        :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
+      >
+        <span>You need to own a Satrap NFT</span>
+      </button>
+
+      <!-- Too low ETH balance -->
+      <button 
+        v-if="isActivated && isNetworkSupported && !getMinterPaused && !hasUserEnoughTokens && getCanUserBuy" 
+        class="connect-wallet px-5 btn-lg mt-3" 
+        :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
+      >
+        <span>Your {{getPaymentTokenName}} balance is too low</span>
+      </button>
+
+      <!-- Buy domain -->
+      <button 
+        v-if="isActivated && isNetworkSupported && getCanUserBuy && !getMinterPaused && hasUserEnoughTokens" 
+        class="connect-wallet px-5 btn-lg mt-3" 
+        @click="buyDomain" 
+        :disabled="waiting || buyNotValid(chosenDomainName).invalid || !hasUserEnoughTokens"
+      >
+        <span v-if="waiting" class="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>
+        <span>CLAIM ID</span>
+      </button>
+
        <!-- Connect Wallet -->
       <button v-if="!isActivated" class="btn connect-wallet px-5 btn-lg mt-3 btn-Disconnected" @click="open">Mint ID</button>
      </div>
@@ -167,7 +168,8 @@ export default {
       domain: 'CYBR',
       domains: [
         '0x34FF649D709ccCEc77bCf433317176fD13246296',
-        '0x218E77E286567270Fe20dd6e1c2EF32eDBf6976a'
+        '0x218E77E286567270Fe20dd6e1c2EF32eDBf6976a',
+        '0x213Ac5a9EBe9dea834f3aCc45D1fBA85935BCA22'
       ]
     }
   },
@@ -349,7 +351,7 @@ export default {
 }
 
 .container {
-  padding-top: 80px;
+  padding-top: 70px;
   padding-bottom: 50px;
 }
 
@@ -370,7 +372,7 @@ export default {
 }
 
 .domain-input-container {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .error {
@@ -438,11 +440,11 @@ tr:last-of-type td:last-of-type {
 }
 
 .header-desc {
-  font-family: 'American Captain';
+  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 70px;
-  line-height: 70px;
+  font-size: 30px;
+  line-height: 30px;
 }
 
 .inter {
@@ -466,8 +468,12 @@ tr:last-of-type td:last-of-type {
   border: 1px solid #FFFFFF;
 }
 
+.mt7 {
+  margin-top: 7rem;
+}
+
 .discount {
-  background: rgba(217, 217, 217, 0.3);
+  background: rgba(204, 204, 204, 0.2);
   border: 1px solid #000000;
   border-radius: 19px;
   padding: 20px;
@@ -475,6 +481,7 @@ tr:last-of-type td:last-of-type {
   height: 200px;
   display: flex;
   margin: auto;
+  margin-bottom: 7rem;
   flex-direction: column;
 }
 
@@ -557,5 +564,18 @@ tr:last-of-type td:last-of-type {
   49.98%,62.64% {transform:translate3d(0,-75%,0);}
   66.64%,79.3% {transform:translate3d(0,-50%,0);}
   83.3%,95.96% {transform:translate3d(0,-25%,0);}
+}
+
+.cyan {
+  color: cyan
+}
+.purple {
+  color: purple
+}
+.red {
+  color: #cc3333
+}
+.blue {
+  color: blue
 }
 </style>

@@ -8,11 +8,7 @@
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
   </div> -->
 
-  <div class="container-fluid text-center" style="background: rgba(158, 8, 8, 0.2);
-  border-bottom: 5px solid rgba(65, 7, 7, 0.8);
-  border-top: 5px solid rgba(65, 7, 7, 0.8);
-
-  ">
+  <div class="container-fluid text-center footer">
     <a href="https://satraps.io" target="_blank">
       <img src="../assets/logo.png">
     </a>
@@ -81,5 +77,11 @@ a:hover {
 
 .polygon:hover svg circle {
   fill: white;
+}
+
+.footer {
+  background: rgba(158, 8, 8, 0.2);
+  border-bottom: 3px solid rgba(65, 7, 7, 0.8);
+  border-top: 3px solid rgba(65, 7, 7, 0.8);
 }
 </style>

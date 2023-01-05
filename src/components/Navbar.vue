@@ -203,8 +203,8 @@ export default {
 
 .header {
   background: rgba(158, 8, 8, 0.2);
-  border-top: 5px solid rgba(65, 7, 7, 0.8);
-  border-bottom: 5px solid rgba(65, 7, 7, 0.8);
+  border-top: 3px solid rgba(65, 7, 7, 0.8);
+  border-bottom: 3px solid rgba(65, 7, 7, 0.8);
   border-radius: inherit;
 }
 
