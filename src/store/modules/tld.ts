@@ -15,7 +15,7 @@ export default {
     tldContract: null,
     tldChainId: 19, // TODO
     tldChainName: "Songbird", // TODO
-    minterAddress: "0x7A4fF9f86478B4B2a16BC0a009257973d501F5D0", // TODO
+    minterAddress: "0x7840735F2f66e9556aD74c6e34EB1035128cA263", // TODO
     minterContract: null,
     minterPaused: true,
     minterTldPrice1: 50000,
