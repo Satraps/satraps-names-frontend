@@ -437,7 +437,7 @@ tr:last-of-type td:last-of-type {
   }
   .content__container__list__item {
     font-size: 27px !important;
-    padding-left: 1em !important;
+    padding-left: 0.85em !important;
     padding-top: 0 !important;
   }
   .header-desc {
