@@ -431,13 +431,17 @@ tr:last-of-type td:last-of-type {
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 767px) {
   .content__container__text {
-    font-size: 30px !important;
+    font-size: 25px !important;
   }
   .content__container__list__item {
-    font-size: 30px !important;
+    font-size: 25px !important;
     padding-left: 42px !important;
+  }
+  .header-desc {
+    font-size: 20px;
+    font-weight: 300;
   }
 }
 

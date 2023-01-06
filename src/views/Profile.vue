@@ -272,8 +272,8 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .card-ad {
-    /* margin-left: 0px !important; */
+  .card-white {
+    margin-left: 5px !important; */
   }
   .vote {
     font-size: 25px;
