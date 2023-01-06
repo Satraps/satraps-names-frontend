@@ -433,11 +433,11 @@ tr:last-of-type td:last-of-type {
 
 @media only screen and (max-width: 767px) {
   .content__container__text {
-    font-size: 25px !important;
+    font-size: 27px !important;
   }
   .content__container__list__item {
-    font-size: 25px !important;
-    padding-left: 1.5em !important;
+    font-size: 27px !important;
+    padding-left: 1.3em !important;
   }
   .header-desc {
     font-size: 20px !important;
