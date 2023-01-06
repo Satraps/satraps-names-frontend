@@ -437,6 +437,7 @@ tr:last-of-type td:last-of-type {
   }
   .content__container__list__item {
     font-size: 25px !important;
+    padding-left: 1.5em !important;
   }
   .header-desc {
     font-size: 20px !important;
