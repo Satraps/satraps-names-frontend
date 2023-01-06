@@ -437,11 +437,10 @@ tr:last-of-type td:last-of-type {
   }
   .content__container__list__item {
     font-size: 25px !important;
-    padding-left: 42px !important;
   }
   .header-desc {
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 20px !important;
+    font-weight: 300 !important;
   }
 }
 
