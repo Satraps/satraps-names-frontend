@@ -2,7 +2,7 @@
   <div class="container text-center">
     <div class="content inter">
       <div class="content__container">
-        <p class="content__container__text">
+        <p class="content__container__text inter">
           Your &emsp; &emsp; &emsp; &nbsp; needs an ID!
         </p>
         <ul class="content__container__list">
@@ -442,7 +442,7 @@ tr:last-of-type td:last-of-type {
 }
 
 .header-desc {
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
@@ -507,7 +507,6 @@ font-family: 'Inter', sans-serif;
 
 .content__container__text {
   display: inline;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 70px;
