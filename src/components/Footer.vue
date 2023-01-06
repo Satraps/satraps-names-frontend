@@ -18,7 +18,7 @@
         <img src="../assets/twitter.png">
       </a>
       <a href="https://twitter.com/TheSatraps" target="_blank">
-        <img src="../assets/discord.png">
+        <img src="../assets/Discord.png">
       </a>
     </div>
   </div>
