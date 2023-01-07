@@ -33,9 +33,9 @@
       <img src="../assets/heart.png" class="side-img">Claim free ID
     </router-link>
 
-    <!-- <router-link class="btn btn-sidebar text-start" to="/profile/buy-domain">
+    <router-link class="btn btn-sidebar text-start" to="/profile/buy-domain">
       <i class="bi bi-cart4"></i> Buy ID
-    </router-link> -->
+    </router-link>
 
     <!--
     <router-link class="btn btn-sidebar text-start" to="/profile/delegate-ftso">

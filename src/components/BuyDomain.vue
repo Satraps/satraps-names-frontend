@@ -53,8 +53,11 @@
         <p class="col-6">
           {{Math.floor(getPrice)}} {{getPaymentTokenName}}
         </p>
-        <div class="col-6" v-if="domains.includes(address)">
+        <div class="col-6" v-if="this.getDiscountEligible">
           <p class="discount-text p-1">Partner - 60% OFF</p>
+        </div>
+        <div class="col-6" v-if="!this.getDiscountEligible">
+          <p class="nodiscount-text p-1">Not Eligible</p>
         </div>
       </div>
 
@@ -164,12 +167,7 @@ export default {
       chosenAllowance: null,
       loading: false, // loading data
       waiting: false, // waiting for TX to complete
-      minterContract: null,
-      domain: 'CYBR',
-      domains: [
-        '0x34FF649D709ccCEc77bCf433317176fD13246296',
-        '0x213Ac5a9EBe9dea834f3aCc45D1fBA85935BCA22'
-      ]
+      minterContract: null
     }
   },
 
@@ -466,6 +464,13 @@ font-family: 'Inter', sans-serif;
 
 .discount-text {
   background: rgba(5, 255, 0, 0.65);
+  border-radius: 16px;
+  max-width: 118px;
+  font-size: 11px;
+}
+
+.nodiscount-text {
+  background: rgba(177, 75, 75, 0.65);
   border-radius: 16px;
   max-width: 118px;
   font-size: 11px;

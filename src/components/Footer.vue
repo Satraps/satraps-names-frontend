@@ -1,23 +1,25 @@
 <template>
-  <!-- <div class="container-fluid text-center mt-3">
-    <router-link v-if="isActivated && isNetworkSupported" to="/profile">Profile</router-link>
+  <div class="container-fluid text-center mt-3">
+    <!--<router-link v-if="isActivated && isNetworkSupported" to="/profile">Profile</router-link>
     
-    <span v-if="isActivated && isNetworkSupported"> | </span>
+    <span v-if="isActivated && isNetworkSupported"> | </span>-->
 
     <router-link v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin" to="/admin">Admin</router-link>
     <span v-if="isUserMinterAdmin || isUserRoyaltyFeeUpdater || isUserTldAdmin"> | </span>
-  </div> -->
+  </div>
 
   <div class="container-fluid text-center footer">
     <a href="https://id.satraps.io" target="_blank">
       <img src="../assets/logo.png" width="60" height="60">
     </a>
     <div class="mt-2 d-flex justify-content-center align-items-center">
-      <img src="../assets/footer-icon.png" class="me-2">
-      <a href="https://twitter.com/TheSatraps" target="_blank" class="me-2">
+      <a href="https://songbird.domains/" target="_blank" title="Songbird Domains" class="me-2">
+        <img src="../assets/footer-icon.png" class="me-2">
+      </a>
+      <a href="https://twitter.com/TheSatraps" target="_blank" title="Satraps Twitter" class="me-2">
         <img src="../assets/twitter.png">
       </a>
-      <a href="https://twitter.com/TheSatraps" target="_blank">
+      <a href="https://discord.gg/4PBswWnCdW" target="_blank" title="Satraps Discord">
         <img src="../assets/Discord.png">
       </a>
     </div>

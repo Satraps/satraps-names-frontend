@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark header">
     <div class="container">
-      <a href="https://id.satraps.io" target="_blank">
+      <a href="https://satraps.io" target="_blank">
         <img src="../assets/satraps-logo.png" alt="" class="d-inline-block navbar-img img-fluid">
       </a>
 
@@ -15,11 +15,11 @@
 
           <div class="navbar-menu-buttons">
             
-            <!-- <router-link 
+            <!--<router-link 
               v-if="getFreeMintEligible" 
               class="btn btn-primary mx-2 navbar-menu-btn freeid-button" 
               to="/claim-free-domain"
-            >Claim Free ID</router-link> -->
+            >Claim Free ID</router-link>-->
 
             <div v-if="isActivated" class="btn-group mx-2">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +43,7 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <router-link tag="li" class="dropdown-item" to="/profile">Profile</router-link>
-                <!-- <router-link tag="li" class="dropdown-item" to="/mint-domains">Buy ID</router-link> -->
+                <!--<router-link tag="li" class="dropdown-item" to="/mint-domains">Buy ID</router-link>-->
                 <router-link tag="li" class="dropdown-item" to="/search-domain">Search</router-link>
                 <router-link tag="li" class="dropdown-item" to="/send-tokens">Send tokens</router-link>
                 <!-- <router-link tag="li" class="dropdown-item" to="/about">About</router-link>
@@ -125,9 +125,10 @@ export default {
 .navbar-brand {
   font-family: 'Roboto', sans-serif;
 }
+/*
 .navbar-dark .navbar-brand {
-  /*color: #fff;*/
-}
+  color: #fff;
+}*/
 .navbar-dark {
   border-radius: 0px 0px 10px 10px;
   /*background: linear-gradient(30deg, #C71585 30%, #c111c3 100%);*/
