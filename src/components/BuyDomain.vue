@@ -193,17 +193,17 @@ export default {
     getPrice() {
       if (this.chosenDomainName) {
         if (this.chosenDomainName.match(/./gu).length === 1) {
-          return this.getMinterTldPrice1 * this.getDiscountFactor;
+          return (this.getMinterTldPrice1 * this.getDiscountFactor).toString();
         } else if (this.chosenDomainName.match(/./gu).length === 2) {
-          return this.getMinterTldPrice2 * this.getDiscountFactor;
+          return (this.getMinterTldPrice2 * this.getDiscountFactor).toString();
         } else if (this.chosenDomainName.match(/./gu).length === 3) {
-          return this.getMinterTldPrice3 * this.getDiscountFactor;
+          return (this.getMinterTldPrice3 * this.getDiscountFactor).toString();
         } else if (this.chosenDomainName.match(/./gu).length === 4) {
-          return this.getMinterTldPrice4 * this.getDiscountFactor;
+          return (this.getMinterTldPrice4 * this.getDiscountFactor).toString();
         }
       }
       
-      return this.getMinterTldPrice5 * this.getDiscountFactor;
+      return (this.getMinterTldPrice5 * this.getDiscountFactor).toString();
     },
 
     domainLowerCase() {
