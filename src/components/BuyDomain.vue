@@ -54,7 +54,7 @@
           {{Math.floor(getPrice)}} {{getPaymentTokenName}}
         </p>
         <div class="col-6" v-if="this.getDiscountEligible">
-          <p class="discount-text p-1">Partner - 60% OFF</p>
+          <p class="discount-text p-1">Partner - 50% OFF</p>
         </div>
         <div class="col-6" v-if="!this.getDiscountEligible">
           <p class="nodiscount-text p-1">Not Eligible</p>
