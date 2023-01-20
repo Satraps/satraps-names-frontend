@@ -13,9 +13,8 @@
         </ul>
       </div>
     </div>
-    <div class="mt7">
-    <p class="header-desc fw-bold inter">Join the ecosystem ethics discussions and participate <br> in issuing ethics on Songbird and Flare Network.<br> #BuildTogether</p>
-      
+    <div><!-- previously margin-top 7rem -->
+      <p class="header-desc fw-bold inter">Join the ecosystem ethics discussions and participate in issuing ethics on Songbird and Flare Network.<br> #BuildTogether</p>
     </div>
 
     <div class="d-flex justify-content-center domain-input-container mb-3">
@@ -352,7 +351,7 @@ export default {
 
 .container {
   padding-top: 90px;
-  padding-bottom: 50px;
+  padding-bottom: 0;
 }
 
 .domain-input {
@@ -480,10 +479,6 @@ font-family: 'Inter', sans-serif;
   border: 1px solid #FFFFFF;
 }
 
-.mt7 {
-  margin-top: 7rem;
-}
-
 .discount {
   background: rgba(180, 180, 180, 0.2);
   border: 1px solid #000000;
@@ -499,7 +494,7 @@ font-family: 'Inter', sans-serif;
 }
 
 .content {
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow:hidden;
