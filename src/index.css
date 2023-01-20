@@ -12,6 +12,7 @@ body {
   font-family: 'Roboto', sans-serif;
   background-image: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url("assets/backgroundsatrapIDpage.jpg");
   background-size: cover;
+  background-position: bottom;
   color: #fff;
 }
 
