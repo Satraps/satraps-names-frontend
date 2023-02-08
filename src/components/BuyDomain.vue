@@ -455,12 +455,6 @@ tr:last-of-type td:last-of-type {
 font-family: 'Inter', sans-serif;
 }
 
-.connect-wallet, .connect-wallet:hover  {
-  background: #CC3333;
-  border-radius: 23px;
-  color: white;
-}
-
 .discount-text {
   background: rgba(5, 255, 0, 0.65);
   border-radius: 16px;

@@ -103,3 +103,19 @@ hr {
     margin-bottom: 15px;
   }
 }
+
+.connect-wallet {
+  background: #CC3333;
+  border-radius: 23px;
+  border: none;
+  color: white;
+}
+
+.connect-wallet:hover {
+  background: darkorchid;
+}
+
+.connect-wallet:disabled {
+  opacity: 0.5;
+}
+
