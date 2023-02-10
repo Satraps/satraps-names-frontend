@@ -209,4 +209,29 @@ export default {
   border-radius: inherit;
 }
 
+.dropdown-toggle {
+  background-color: #40343e;
+  border: 2px solid rgba(30,13,114, 0.4);
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.dropdown-menu {
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #40343e !important;
+}
+
+.dropdown-item {
+  color: white;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-toggle:hover, .dropdown-toggle:focus {
+  background-color: #CC3333;
+  color: white;
+  border: 2px solid rgba(30,13,114, 0.4);
+}
+
 </style>

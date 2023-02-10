@@ -19,7 +19,7 @@
       <!-- END Punk Domain image -->
 
       <div class="text-center" @click="flipImage">
-        <small><i class="bi bi-arrow-repeat"></i></small>
+        <small><i class="bi-arrow-repeat"></i></small>
       </div>
     <!-- END Flip profile images -->
     
@@ -121,7 +121,7 @@ export default {
 
 <style scoped>
 .bi {
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 .btn-sidebar, .btn-sidebar:focus {
