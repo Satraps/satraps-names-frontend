@@ -6,10 +6,10 @@
           Your &emsp; &emsp; &emsp; &nbsp; needs an ID!
         </p>
         <ul class="content__container__list">
-          <li class="content__container__list__item red">&nbsp;&nbsp;&nbsp;&nbsp;CYBR</li>
-          <li class="content__container__list__item cyan">&nbsp;&nbsp;&nbsp;&nbsp;Satrap</li>
-          <li class="content__container__list__item purple">&nbsp;&nbsp;Senator</li>
-          <li class="content__container__list__item blue">&nbsp;Sparktan</li>
+          <li class="content__container__list__item red"><span class="ptitle">&nbsp;&nbsp;&nbsp;&nbsp;CYBR</span></li>
+          <li class="content__container__list__item blue"><span class="ptitle">&nbsp;&nbsp;Grungie</span></li>
+          <li class="content__container__list__item purple"><span class="ptitle">&nbsp;&nbsp;Senator</span></li>
+          <li class="content__container__list__item cyan"><span class="ptitle">&nbsp;&nbsp;&nbsp;Satrap</span></li>
         </ul>
       </div>
     </div>
@@ -530,6 +530,10 @@ font-family: 'Inter', sans-serif;
   font-size: 65px;
   padding-top: 5px;
   color: #E83064;
+}
+
+.ptitle {
+  text-shadow: 10px 10px 5px rgba(3, 6, 3, 0.5);
 }
 
 @-webkit-keyframes change {
