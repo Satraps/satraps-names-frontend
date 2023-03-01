@@ -64,7 +64,7 @@ export default function useChainHelpers() {
       } else if (networkId === 19) {
         // Songbird
         urls = [
-          "https://songbird.towolabs.com/rpc",
+          //"https://songbird.towolabs.com/rpc",
           "https://songbird-api.flare.network/ext/C/rpc"
         ]; 
       } else if (networkId === 56) {
@@ -265,7 +265,7 @@ export default function useChainHelpers() {
         chainId: "0x13",
         chainName: "Songbird",
         nativeCurrency: { decimals: 18, name: "SGB", symbol: "SGB" }, 
-        rpcUrls: ["https://songbird.towolabs.com/rpc", "https://songbird-api.flare.network/ext/C/rpc"]
+        rpcUrls: ["https://songbird-api.flare.network/ext/C/rpc"]
       }] 
     }
 

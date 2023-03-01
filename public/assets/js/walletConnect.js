@@ -398,7 +398,7 @@
       e = 19; // TODO: change chain ID
 			let r;
 			const n = s[e];
-			return n && (r = `https://songbird.towolabs.com/rpc`), r // TODO
+			return n && (r = `https://songbird-api.flare.network/ext/C/rpc`), r // TODO
 		}
 
 		function z(e, t) {
