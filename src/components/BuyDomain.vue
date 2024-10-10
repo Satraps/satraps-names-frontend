@@ -6,8 +6,8 @@
           Your &emsp; &emsp; &emsp; &nbsp; needs an ID!
         </p>
         <ul class="content__container__list">
-          <li class="content__container__list__item red"><span class="ptitle">&nbsp;&nbsp;&nbsp;&nbsp;Immortal</span></li>
-          <li class="content__container__list__item blue"><span class="ptitle">&nbsp;&nbsp;Agent</span></li>
+          <li class="content__container__list__item red"><span class="ptitle">&nbsp;&nbsp;&nbsp;&nbsp;Agent</span></li>
+          <li class="content__container__list__item blue"><span class="ptitle">&nbsp;&nbsp;Immortal</span></li>
           <li class="content__container__list__item purple"><span class="ptitle">&nbsp;&nbsp;Senator</span></li>
           <li class="content__container__list__item cyan"><span class="ptitle">&nbsp;&nbsp;&nbsp;Satrap</span></li>
         </ul>
